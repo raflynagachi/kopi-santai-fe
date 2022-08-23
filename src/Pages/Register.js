@@ -2,24 +2,27 @@ import { useNavigate } from 'react-router-dom';
 import FormWrapper from '../Components/Form/FormWrapper';
 import { API, helpers } from '../Utils/API';
 
-export default function Login({ setToken }) {
+export default function Register({ setToken }) {
   const navigate = useNavigate();
-  const handleSubmitLogin = (e) => {
+  const handleSubmitRegister = (e) => {
     e.preventDefault();
     const dataForm = e.target.elements;
 
     const requestBody = {
+      fullName: dataForm.fullName.value,
+      phone: dataForm.phone.value,
+      address: dataForm.address.value,
       email: dataForm.email.value,
       password: dataForm.password.value,
     };
 
     const requestOpt = helpers.requestOptions(requestBody, 'POST');
-    fetch(API.Login, requestOpt)
+    fetch(API.Register, requestOpt)
       .then((res) => res.json())
       .then((result) => {
         if (result.statusCode === 200) {
           setToken(result.data.token);
-          alert('Login successful');
+          alert('Register successful');
         }
       })
       .catch((err) => {
@@ -29,11 +32,14 @@ export default function Login({ setToken }) {
   };
 
   return (
-    <FormWrapper title="Login">
-      <form onSubmit={handleSubmitLogin}>
+    <FormWrapper title="Register">
+      <form onSubmit={handleSubmitRegister}>
+        <input id="fullName" className="form-control my-3" type="text" placeholder="full name" required />
+        <input id="phone" className="form-control my-3" type="tel" pattern="[+]*[0-9]{8,13}" placeholder="phone" required />
+        <textarea id="address" className="form-control my-3" placeholder="address" required />
         <input id="email" className="form-control my-3" type="text" placeholder="email" required />
         <input id="password" className="form-control my-3" type="password" placeholder="password" required />
-        <button type="submit" className="btn btn-primary w-100 my-2">Login</button>
+        <button type="submit" className="btn btn-primary w-100 my-2">Register</button>
       </form>
     </FormWrapper>
   );
