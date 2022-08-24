@@ -1,9 +1,13 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import FormWrapper from '../Components/Form/FormWrapper';
 import { API, helpers } from '../Utils/API';
+import Toast from '../Components/Toast';
 
 export default function Register({ setToken }) {
   const navigate = useNavigate();
+  const [error, setError] = useState(null);
+
   const handleSubmitRegister = (e) => {
     e.preventDefault();
     const dataForm = e.target.elements;
@@ -22,14 +26,19 @@ export default function Register({ setToken }) {
       .then((result) => {
         if (result.statusCode === 200) {
           setToken(result.data.token);
-          alert('Register successful');
         }
       })
       .catch((err) => {
-        console.log(err.message);
+        setError(err);
       });
     navigate('/');
   };
+
+  if (error) {
+    return (
+      <Toast message={error.message} />
+    );
+  }
 
   return (
     <FormWrapper title="Register">

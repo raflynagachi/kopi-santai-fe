@@ -12,3 +12,4 @@ export function API() {}
 
 API.Login = `${baseUrl}/login`;
 API.Register = `${baseUrl}/register`;
+API.Menus = `${baseUrl}/menus`;
