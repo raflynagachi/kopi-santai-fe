@@ -4,7 +4,7 @@ import FormWrapper from '../Components/Form/FormWrapper';
 import { API, helpers } from '../Utils/API';
 import Toast from '../Components/Toast';
 
-export default function Register({ setIsLoggedIn }) {
+export default function Register() {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [showToast, setShowToast] = useState(false);
@@ -27,15 +27,13 @@ export default function Register({ setIsLoggedIn }) {
       .then((result) => {
         if (result.statusCode === 200) {
           localStorage.setItem('token', result.data.token);
-          setIsLoggedIn(true);
           navigate('/');
-        } else {
-          setError(result);
-          setShowToast(true);
+          window.location.reload();
         }
       })
       .catch((err) => {
         setError(err);
+        setShowToast(true);
       });
   };
 

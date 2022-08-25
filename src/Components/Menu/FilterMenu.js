@@ -1,6 +1,6 @@
 import './Menu.css';
 
-export default function FilterButton({
+export default function FilterMenu({
   queryParam, handleChangeQueryParam,
 }) {
   return (
@@ -43,7 +43,7 @@ export default function FilterButton({
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
         </select>
-        <input type="text d-flex" className="searchInput" id="search" onChange={handleChangeQueryParam} />
+        <input type="text" className="searchInput" id="search" placeholder="type a keyword.." onChange={handleChangeQueryParam} />
       </div>
     </div>
   );

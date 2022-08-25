@@ -1,52 +1,31 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import jwt from 'jwt-decode';
 import Login from './Pages/Login';
 import MainLayout from './Layouts/MainLayout';
 import Register from './Pages/Register';
 import MenuPage from './Pages/Menu';
 import PageNotFound from './Pages/PageNotFound';
 import Profile from './Pages/Profile';
+import { helpers } from './Utils/API';
 
 function App() {
-  const [user, setUser] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const logout = () => {
-    localStorage.setItem('token', '');
-    setIsLoggedIn(false);
-  };
-
-  useEffect(() => {
-    localStorage.getItem('token');
-  }, []);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token === true);
-    if (isLoggedIn) {
-      setUser(jwt(token));
-    }
-  }, [isLoggedIn]);
-
   return (
     <Routes>
       <Route
         path="/"
-        element={<MainLayout logout={logout} isLoggedIn={isLoggedIn} />}
+        element={<MainLayout logout={helpers.logout} />}
       >
         <Route
           path="login"
-          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+          element={<Login />}
         />
         <Route
           path="register"
-          element={<Register setIsLoggedIn={setIsLoggedIn} />}
+          element={<Register />}
         />
         <Route
           path="profile"
-          element={<Profile user={user} />}
+          element={<Profile />}
         />
         <Route
           path="/menu"

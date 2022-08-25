@@ -1,11 +1,26 @@
+import jwt from 'jwt-decode';
+
 const baseUrl = 'http://localhost:8080';
+const loginPage = 'http://localhost:3000/login';
 
 export const helpers = {
-  requestOptions: (dataObj, method) => ({
+  requestOptions: (dataObj, method, token) => ({
     method,
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     body: JSON.stringify(dataObj),
   }),
+  isValidToken: (token) => {
+    if (token === '') return false;
+    const decodedToken = jwt(token);
+    const dateNow = new Date();
+
+    return decodedToken.exp > dateNow.getTime();
+  },
+  logout: () => {
+    localStorage.setItem('token', '');
+    window.open(loginPage, '_self');
+    window.location.reload();
+  },
   queryParamMenuToString: (q) => (
     `?category=${q.category ? q.category : ''}&sortBy=${q.sortBy ? q.sortBy : ''}&sort=${q.sort ? q.sort : ''}&search=${q.search ? q.search : ''}`
   ),

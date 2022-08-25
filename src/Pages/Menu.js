@@ -28,7 +28,7 @@ export default function MenuPage() {
     if (error) {
       setShowToast(true);
     }
-  }, [menuRes]);
+  }, [error, menuRes]);
 
   return (
     <div className="container my-2">

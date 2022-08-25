@@ -1,35 +1,58 @@
 import { useEffect, useState } from 'react';
-import useFetch from '../Hooks/useFetch';
-import { API } from '../Utils/API';
+import jwt from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
+import { API, helpers } from '../Utils/API';
 import Toast from '../Components/Toast';
 import Loading from '../Components/Loading';
+import UserProfile from '../Components/Profile/UserProfile';
 
-export default function Profile({ user }) {
-  const [userProfile, setUserProfile] = useState({});
+export default function Profile() {
+  const navigate = useNavigate();
+  const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showToast, setShowToast] = useState(false);
-
-  const userProfileRes = useFetch(`${API.Users}/${user.id}`);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    setUserProfile(userProfileRes.data.data);
-    setLoading(userProfileRes.loading);
-    setError(userProfileRes.error);
-    if (error) {
-      setShowToast(true);
+    if (helpers.isValidToken(token)) {
+      helpers.logout();
+      navigate('/login');
     }
-  }, [userProfileRes]);
 
-  console.log(userProfile);
+    const userJWT = jwt(token);
+    const url = `${API.Users}/${userJWT.user.id}`;
+    const reqOpt = { headers: { Authorization: `Bearer ${token}` } };
+
+    fetch(url, reqOpt)
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.statusCode === 200) {
+          setData(result.data);
+          setLoading(result.loading);
+          setError(result.error);
+        } else if (result.statusCode === 401) {
+          alert('unauthorized error');
+          navigate('/login');
+        }
+      })
+      .catch((err) => {
+        setError(err);
+        setShowToast(true);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [token]);
+
   return (
     <div className="container my-2">
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
-      <h4 className="text-center">Our Menus</h4>
+      <h4 className="text-center">Profile Page</h4>
       <hr className="my-5" />
       {loading && <Loading />}
-      {!error && !loading && (
-        <h2>sdasa</h2>
+      {!error && !loading && data && (
+        <UserProfile data={data} />
       )}
     </div>
   );

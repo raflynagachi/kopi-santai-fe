@@ -11,8 +11,6 @@ export default function useFetch(url, requestOptions) {
       .then((result) => {
         if (result.statusCode === 200) {
           setData(result);
-        } else {
-          setError(result);
         }
       })
       .catch((err) => {
@@ -21,7 +19,7 @@ export default function useFetch(url, requestOptions) {
       .finally(() => {
         setLoading(false);
       });
-  }, [url, requestOptions]);
+  }, [url]);
 
   return { data, loading, error };
 }

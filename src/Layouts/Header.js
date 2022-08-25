@@ -1,7 +1,9 @@
 import { Link, NavLink } from 'react-router-dom';
 import './Layout.css';
 
-export default function Header({ isLoggedIn, logout }) {
+export default function Header({ logout }) {
+  const token = localStorage.getItem('token');
+
   return (
     <header>
       <nav className="navbar navbar-expand-md navbar-light">
@@ -43,10 +45,10 @@ export default function Header({ isLoggedIn, logout }) {
                 </NavLink>
               </li>
               |
-              {isLoggedIn ? (
+              { token ? (
                 <>
                   <li className="nav-item">
-                    <NavLink data-testid="navlink-register" to="profile">
+                    <NavLink data-testid="navlink-profile" to="profile">
                       Profile
                     </NavLink>
                   </li>
