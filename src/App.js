@@ -1,6 +1,6 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Login from './Pages/Login';
 import MainLayout from './Layouts/MainLayout';
 import Register from './Pages/Register';
@@ -8,14 +8,22 @@ import MenuPage from './Pages/Menu';
 import PageNotFound from './Pages/PageNotFound';
 
 function App() {
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  console.log(token);
+  const logout = () => {
+    setToken(null);
+  };
+
+  useEffect(() => {
+    setIsLoggedIn(!!token === false);
+  }, [token]);
+
   return (
     <Routes>
       <Route
         path="/"
-        element={<MainLayout />}
+        element={<MainLayout logout={logout} isLoggedIn={isLoggedIn} />}
       >
         <Route
           path="login"
