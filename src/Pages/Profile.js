@@ -5,6 +5,7 @@ import { API, helpers } from '../Utils/API';
 import Toast from '../Components/Toast';
 import Loading from '../Components/Loading';
 import UserProfile from '../Components/Profile/UserProfile';
+import UserCoupons from '../Components/Profile/UserCoupons';
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -48,11 +49,14 @@ export default function Profile() {
   return (
     <div className="container my-2">
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
-      <h4 className="text-center">Profile Page</h4>
+      <h2 className="text-center">Profile Page</h2>
       <hr className="my-5" />
       {loading && <Loading />}
       {!error && !loading && data && (
-        <UserProfile data={data} />
+        <>
+          <UserProfile data={data} />
+          <UserCoupons coupons={data.coupons} />
+        </>
       )}
     </div>
   );

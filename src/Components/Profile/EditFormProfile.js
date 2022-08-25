@@ -1,6 +1,6 @@
 import FormWrapper from '../Form/FormWrapper';
 
-export default function EditProfile({ user, handleSubmitUserEdit }) {
+export default function EditFormProfile({ user, handleSubmitUserEdit }) {
   return (
     <FormWrapper title="Edit Profile">
       <form onSubmit={handleSubmitUserEdit}>

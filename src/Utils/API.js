@@ -17,8 +17,8 @@ export const helpers = {
     return decodedToken.exp > dateNow.getTime();
   },
   logout: () => {
-    localStorage.setItem('token', '');
     window.open(loginPage, '_self');
+    localStorage.setItem('token', '');
     window.location.reload();
   },
   queryParamMenuToString: (q) => (

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import jwt from 'jwt-decode';
 import format from '../../Utils/Format';
-import EditProfile from './EditProfile';
+import EditFormProfile from './EditFormProfile';
 import { API, helpers } from '../../Utils/API';
 import Toast from '../Toast';
 import Modal from '../Modal';
@@ -61,11 +61,11 @@ export default function UserProfile({ data }) {
 
   return (
     <div className="d-flex flex-row justify-content-center align-items-center">
-      {showModal && <Modal show={showModal} setShow={setShowModal} title="Edit Profile"><EditProfile user={data.user} handleSubmitUserEdit={handleSubmitUserEdit} /></Modal>}
+      {showModal && <Modal show={showModal} setShow={setShowModal} title="Edit Profile"><EditFormProfile user={data.user} handleSubmitUserEdit={handleSubmitUserEdit} /></Modal>}
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
       <img style={{ width: '200px', height: '200px' }} className="rounded-circle p-4" src={format.displayByteImage(data.user.profilePicture)} alt="profile" />
       <div className="d-flex flex-column">
-        <table>
+        <table className="table">
           <tbody>
             <th>
               <tr>Name</tr>
