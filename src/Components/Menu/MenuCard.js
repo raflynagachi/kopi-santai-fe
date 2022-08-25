@@ -9,12 +9,12 @@ export default function MenuCard({ menuItem }) {
           {menuItem.categoryName}
         </p>
         <div className="card-text row">
-          <div className="col-6">
+          <div className="col-3">
             <span className="fa fa-star checked" />
             {' '}
             {menuItem.rating}
           </div>
-          <div className="col-6">
+          <div className="col-9 text-end">
             Rp
             {` ${menuItem.price}`}
           </div>

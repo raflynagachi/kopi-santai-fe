@@ -1,15 +1,25 @@
 import { useEffect, useState } from 'react';
-import { API } from '../Utils/API';
-import useFetch from '../Hooks/useFetch';
+import { API, helpers } from '../../Utils/API';
+import useFetch from '../../Hooks/useFetch';
 import MenuCard from './MenuCard';
-import Toast from './Toast';
-import Loading from './Loading';
+import Toast from '../Toast';
+import Loading from '../Loading';
+import FilterButton from './FilterMenu';
 
 export default function Menu() {
   const [menu, setMenu] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const menuRes = useFetch(API.Menus);
+  const [queryParam, setQueryParam] = useState({});
+
+  const menuRes = useFetch(API.Menus + helpers.queryParamMenuToString(queryParam));
+
+  const handleChangeQueryParam = (event) => {
+    setQueryParam({
+      ...queryParam,
+      [event.target.id]: event.target.value,
+    });
+  };
 
   useEffect(() => {
     setMenu(menuRes.data.data);
@@ -28,6 +38,7 @@ export default function Menu() {
       <div className="container my-5">
         <h4 className="text-center">Our Menus</h4>
         <hr className="my-5" />
+        <FilterButton queryParam={queryParam} handleChangeQueryParam={handleChangeQueryParam} />
         <div className="row d-flex align-items-center">
           {
           menu.length !== 0

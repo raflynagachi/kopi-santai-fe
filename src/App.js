@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Login from './Pages/Login';
 import MainLayout from './Layouts/MainLayout';
 import Register from './Pages/Register';
-import Home from './Pages/Home';
+import Menu from './Pages/Menu';
 
 function App() {
   const [token, setToken] = useState('');
@@ -17,16 +17,16 @@ function App() {
         element={<MainLayout />}
       >
         <Route
-          path="/"
-          element={<Home />}
-        />
-        <Route
           path="login"
           element={<Login setToken={setToken} />}
         />
         <Route
           path="register"
           element={<Register setToken={setToken} />}
+        />
+        <Route
+          path="/menu"
+          element={<Menu />}
         />
       </Route>
     </Routes>
