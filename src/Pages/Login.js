@@ -7,6 +7,7 @@ import Toast from '../Components/Toast';
 export default function Login({ setToken }) {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
+  const [showToast, setShowToast] = useState(false);
 
   const handleSubmitLogin = (e) => {
     e.preventDefault();
@@ -23,29 +24,27 @@ export default function Login({ setToken }) {
       .then((result) => {
         if (result.statusCode === 200) {
           setToken(result.data.token);
+          navigate('/');
+        } else {
+          setError(result);
+          setShowToast(true);
         }
       })
       .catch((err) => {
         setError(err);
       });
-    navigate('/');
   };
 
-  if (error) {
-    return (
-      <Toast message={error.message} />
-    );
-  }
-
   return (
-    <div>
+    <>
+      {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
       <FormWrapper title="Login">
         <form onSubmit={handleSubmitLogin}>
-          <input id="email" className="form-control my-3" type="text" placeholder="email" required />
+          <input id="email" className="form-control my-3" type="email" placeholder="email" required />
           <input id="password" className="form-control my-3" type="password" placeholder="password" required />
           <button type="submit" className="btn btn-primary w-100 my-2">Login</button>
         </form>
       </FormWrapper>
-    </div>
+    </>
   );
 }

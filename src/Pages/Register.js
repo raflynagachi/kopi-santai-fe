@@ -7,6 +7,7 @@ import Toast from '../Components/Toast';
 export default function Register({ setToken }) {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
+  const [showToast, setShowToast] = useState(false);
 
   const handleSubmitRegister = (e) => {
     e.preventDefault();
@@ -26,30 +27,30 @@ export default function Register({ setToken }) {
       .then((result) => {
         if (result.statusCode === 200) {
           setToken(result.data.token);
+          navigate('/');
+        } else {
+          setError(result);
+          setShowToast(true);
         }
       })
       .catch((err) => {
         setError(err);
       });
-    navigate('/');
   };
 
-  if (error) {
-    return (
-      <Toast message={error.message} />
-    );
-  }
-
   return (
-    <FormWrapper title="Register">
-      <form onSubmit={handleSubmitRegister}>
-        <input id="fullName" className="form-control my-3" type="text" placeholder="full name" required />
-        <input id="phone" className="form-control my-3" type="tel" pattern="[+]*[0-9]{8,13}" placeholder="phone" required />
-        <textarea id="address" className="form-control my-3" placeholder="address" required />
-        <input id="email" className="form-control my-3" type="text" placeholder="email" required />
-        <input id="password" className="form-control my-3" type="password" placeholder="password" required />
-        <button type="submit" className="btn btn-primary w-100 my-2">Register</button>
-      </form>
-    </FormWrapper>
+    <>
+      {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
+      <FormWrapper title="Register">
+        <form onSubmit={handleSubmitRegister}>
+          <input id="fullName" className="form-control my-3" type="text" placeholder="full name" required />
+          <input id="phone" className="form-control my-3" type="tel" pattern="[+]*[0-9]{8,13}" placeholder="phone" required />
+          <textarea id="address" className="form-control my-3" placeholder="address" required />
+          <input id="email" className="form-control my-3" type="email" placeholder="email" required />
+          <input id="password" className="form-control my-3" type="password" placeholder="password" required />
+          <button type="submit" className="btn btn-primary w-100 my-2">Register</button>
+        </form>
+      </FormWrapper>
+    </>
   );
 }

@@ -1,11 +1,8 @@
-import { useState } from 'react';
-
-export default function Toast({ message }) {
-  const [show, setShow] = useState(true);
+export default function Toast({ show, setShow, message }) {
   const showToast = show ? 'show' : '';
 
   return (
-    <div className="toast-container position-fixed bottom-0 end-0 p-3">
+    <div className="toast-container position-fixed top-1 end-0 p-3">
       <div className={`toast ${showToast}`} role="alert" aria-live="assertive" aria-atomic="true">
         <div className="toast-header">
           <span className="rounded me-2 bg-blue" />
