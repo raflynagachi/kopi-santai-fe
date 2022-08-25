@@ -29,9 +29,10 @@ export default function EditProfile({ user, handleSubmitUserEdit }) {
           <input defaultValue={user.address} type="text" className="form-control" id="address" />
         </div>
         <br />
-        <div className="form-group">
+        <div className="form-group d-flex flex-column">
           Profile Picture
-          <input defaultValue={user.profilePicture} type="text" className="form-control" id="profilePicture" />
+          <input style={{ display: 'none' }} defaultValue={user.profilePicture} type="text" className="form-control" id="defaultProfilePicture" />
+          <input type="file" className="form-control" accept="image/*" id="profilePicture" />
         </div>
         <br />
         <button type="submit">Submit</button>

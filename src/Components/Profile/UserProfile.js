@@ -18,7 +18,7 @@ export default function UserProfile({ data }) {
     setShowModal(true);
   };
 
-  const handleSubmitUserEdit = (e) => {
+  const handleSubmitUserEdit = async (e) => {
     e.preventDefault();
     const dataForm = e.target.elements;
 
@@ -27,13 +27,19 @@ export default function UserProfile({ data }) {
       navigate('/login');
     }
 
+    let base64 = dataForm.defaultProfilePicture.value;
+    const file = dataForm.profilePicture.files[0];
+    if (file) {
+      base64 = await format.getBase64(file);
+    }
+
     const requestBody = {
       fullName: dataForm.fullName.value,
       email: dataForm.email.value,
       password: dataForm.password.value,
       phone: dataForm.phone.value,
       address: dataForm.address.value,
-      profilePicture: dataForm.profilePicture.value,
+      profilePicture: base64,
     };
 
     const userJWT = jwt(token);
