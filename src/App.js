@@ -5,6 +5,7 @@ import Login from './Pages/Login';
 import MainLayout from './Layouts/MainLayout';
 import Register from './Pages/Register';
 import MenuPage from './Pages/Menu';
+import PageNotFound from './Pages/PageNotFound';
 
 function App() {
   const [token, setToken] = useState('');
@@ -29,6 +30,10 @@ function App() {
           element={<MenuPage />}
         />
       </Route>
+      <Route
+        path="*"
+        element={<PageNotFound />}
+      />
     </Routes>
   );
 }
