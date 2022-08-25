@@ -46,26 +46,26 @@ export default function Header({ isLoggedIn, logout }) {
               {isLoggedIn ? (
                 <>
                   <li className="nav-item">
-                    <NavLink data-testid="navlink-login" to="login">
-                      Login
+                    <NavLink data-testid="navlink-register" to="profile">
+                      Profile
                     </NavLink>
                   </li>
-                  <li className="nav-item">
-                    <NavLink data-testid="navlink-register" to="register">
-                      Register
-                    </NavLink>
+                  <li className="nav-item m-auto">
+                    <button type="button" onClick={logout} className="btn py-0 px-2" style={{ backgroundColor: '#ff6d6d' }}>Logout</button>
                   </li>
                 </>
               )
                 : (
                   <>
                     <li className="nav-item">
-                      <NavLink data-testid="navlink-register" to="profile">
-                        Profile
+                      <NavLink data-testid="navlink-login" to="login">
+                        Login
                       </NavLink>
                     </li>
-                    <li className="nav-item m-auto">
-                      <button type="button" onClick={logout} className="btn py-0 px-2" style={{ backgroundColor: '#ff6d6d' }}>Logout</button>
+                    <li className="nav-item">
+                      <NavLink data-testid="navlink-register" to="register">
+                        Register
+                      </NavLink>
                     </li>
                   </>
                 )}
