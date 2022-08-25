@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Login from './Pages/Login';
 import MainLayout from './Layouts/MainLayout';
 import Register from './Pages/Register';
-import Menu from './Pages/Menu';
+import MenuPage from './Pages/Menu';
 
 function App() {
   const [token, setToken] = useState('');
@@ -26,7 +26,7 @@ function App() {
         />
         <Route
           path="/menu"
-          element={<Menu />}
+          element={<MenuPage />}
         />
       </Route>
     </Routes>
