@@ -4,8 +4,8 @@ export default function FilterMenu({
   queryParam, handleChangeQueryParam,
 }) {
   return (
-    <div className="d-flex flex-row justify-content-between mb-4">
-      <div className="d-flex flex-row align-items-center justify-content-around">
+    <div className="d-md-flex flex-row justify-content-between mb-4">
+      <div className="d-flex flex-row align-items-center justify-content-around mb-2">
         <p className="my-0 me-2" style={{ whiteSpace: 'nowrap' }}>Show</p>
         <select
           className="form-select mx-2"
@@ -21,9 +21,9 @@ export default function FilterMenu({
         </select>
       </div>
       <div className="d-flex flex-row align-items-center justify-content-around">
-        <p className="my-0 me-2" style={{ whiteSpace: 'nowrap' }}>Sort by</p>
+        <p className="my-0 me-1" style={{ whiteSpace: 'nowrap' }}>Sort by</p>
         <select
-          className="form-select mx-2"
+          className="form-select me-2"
           aria-label="Default select example"
           id="sortBy"
           value={queryParam.sortBy}
@@ -43,7 +43,7 @@ export default function FilterMenu({
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
         </select>
-        <input type="text" className="searchInput" id="search" placeholder="type a keyword.." onChange={handleChangeQueryParam} />
+        <input type="text" className="searchInput form-control" id="search" placeholder="type a keyword.." onChange={handleChangeQueryParam} />
       </div>
     </div>
   );

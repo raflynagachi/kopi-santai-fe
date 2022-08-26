@@ -11,7 +11,7 @@ export default function Menu({
         {
           menu
             ? menu.map((item) => (
-              <div key={item.id} className="col my-3">
+              <div key={item.id} className="col my-2">
                 <MenuCard menuItem={item} />
               </div>
             )) : (<div className="text-center">No menu</div>)
