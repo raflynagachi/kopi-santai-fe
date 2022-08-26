@@ -22,7 +22,7 @@ export default function MenuCard({ menuItem }) {
             {` ${menuItem.price}`}
           </div>
         </div>
-        <Link to={`/menu/${menuItem.id}`}>Order</Link>
+        <Link to={`/menu/${menuItem.id}`}>See detail</Link>
       </div>
     </div>
   );

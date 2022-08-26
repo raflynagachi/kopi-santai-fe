@@ -1,7 +1,6 @@
 import jwt from 'jwt-decode';
 
 const baseUrl = 'http://localhost:8080';
-const loginPage = 'http://localhost:3000/login';
 
 export const helpers = {
   requestOptions: (dataObj, method, token) => ({

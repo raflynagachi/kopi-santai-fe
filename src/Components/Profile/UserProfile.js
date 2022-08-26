@@ -67,18 +67,22 @@ export default function UserProfile({ data }) {
       <div className="d-flex flex-column">
         <table className="table">
           <tbody>
-            <th>
-              <tr>Name</tr>
-              <tr>Phone</tr>
-              <tr>Email</tr>
-              <tr>Address</tr>
-            </th>
-            <th className="ps-4" style={{ fontWeight: 400 }}>
-              <tr>{data.user.fullName}</tr>
-              <tr>{data.user.phone}</tr>
-              <tr>{data.user.email}</tr>
-              <tr>{data.user.address}</tr>
-            </th>
+            <tr>
+              <th>Name</th>
+              <td>{data.user.fullName}</td>
+            </tr>
+            <tr>
+              <th>Phone</th>
+              <td>{data.user.phone}</td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td>{data.user.email}</td>
+            </tr>
+            <tr>
+              <th>Address</th>
+              <td>{data.user.address}</td>
+            </tr>
           </tbody>
         </table>
         <button type="button" onClick={editProfile}>Edit profile</button>

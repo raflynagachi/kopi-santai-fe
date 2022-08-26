@@ -6,6 +6,7 @@ import Register from './Pages/Register';
 import MenuPage from './Pages/Menu';
 import PageNotFound from './Pages/PageNotFound';
 import Profile from './Pages/Profile';
+import MenuDetail from './Pages/MenuDetail';
 
 function App() {
   return (
@@ -29,6 +30,10 @@ function App() {
         <Route
           path="/menu"
           element={<MenuPage />}
+        />
+        <Route
+          path="/menu/:id"
+          element={<MenuDetail />}
         />
       </Route>
       <Route
