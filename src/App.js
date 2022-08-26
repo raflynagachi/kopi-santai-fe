@@ -6,14 +6,13 @@ import Register from './Pages/Register';
 import MenuPage from './Pages/Menu';
 import PageNotFound from './Pages/PageNotFound';
 import Profile from './Pages/Profile';
-import { helpers } from './Utils/API';
 
 function App() {
   return (
     <Routes>
       <Route
         path="/"
-        element={<MainLayout logout={helpers.logout} />}
+        element={<MainLayout />}
       >
         <Route
           path="login"

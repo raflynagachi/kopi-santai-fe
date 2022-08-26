@@ -16,11 +16,6 @@ export const helpers = {
 
     return decodedToken.exp > dateNow.getTime();
   },
-  logout: () => {
-    window.open(loginPage, '_self');
-    localStorage.setItem('token', '');
-    window.location.reload();
-  },
   queryParamMenuToString: (q) => (
     `?category=${q.category ? q.category : ''}&sortBy=${q.sortBy ? q.sortBy : ''}&sort=${q.sort ? q.sort : ''}&search=${q.search ? q.search : ''}`
   ),

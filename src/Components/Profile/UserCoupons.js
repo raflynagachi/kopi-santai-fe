@@ -14,7 +14,7 @@ export default function UserCoupons({ coupons }) {
           {
         coupons
           ? coupons.map((c, idx) => (
-            <tr>
+            <tr key={c.id}>
               <td>{idx + 1}</td>
               <td>{c.name}</td>
               <td>{`${c.amount}%`}</td>

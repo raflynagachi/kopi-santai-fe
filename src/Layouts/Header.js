@@ -1,8 +1,15 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './Layout.css';
 
-export default function Header({ logout }) {
+export default function Header() {
+  const navigate = useNavigate();
   const token = localStorage.getItem('token');
+
+  const logout = () => {
+    navigate('/login');
+    localStorage.setItem('token', '');
+    window.location.reload();
+  };
 
   return (
     <header>
