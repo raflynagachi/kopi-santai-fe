@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import format from '../../Utils/Format';
 
 export default function MenuCard({ menuItem }) {
@@ -21,7 +22,7 @@ export default function MenuCard({ menuItem }) {
             {` ${menuItem.price}`}
           </div>
         </div>
-        <a style={{ fontSize: '0.8em' }} href="1" className="btn btn-primary">Order</a>
+        <Link to={`/menu/${menuItem.id}`}>Order</Link>
       </div>
     </div>
   );

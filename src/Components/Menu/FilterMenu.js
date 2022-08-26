@@ -20,7 +20,7 @@ export default function FilterMenu({
           <option value="bread">bread</option>
         </select>
       </div>
-      <div className="d-flex flex-row align-items-center justify-content-around">
+      <div className="d-flex flex-row align-items-center justify-content-around mb-2">
         <p className="my-0 me-1" style={{ whiteSpace: 'nowrap' }}>Sort by</p>
         <select
           className="form-select me-2"
