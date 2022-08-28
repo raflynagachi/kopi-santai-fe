@@ -22,8 +22,7 @@ export default function UserProfile({ data }) {
     e.preventDefault();
     const dataForm = e.target.elements;
 
-    if (helpers.isValidToken(token)) {
-      helpers.logout();
+    if (!helpers.isValidToken(token)) {
       navigate('/login');
     }
 

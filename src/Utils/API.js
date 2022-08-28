@@ -13,7 +13,7 @@ export const helpers = {
     const decodedToken = jwt(token);
     const dateNow = new Date();
 
-    return decodedToken.exp > dateNow.getTime();
+    return decodedToken.exp * 1000 > dateNow.getTime();
   },
   queryParamMenuToString: (q) => (
     `?category=${q.category ? q.category : ''}&sortBy=${q.sortBy ? q.sortBy : ''}&sort=${q.sort ? q.sort : ''}&search=${q.search ? q.search : ''}`

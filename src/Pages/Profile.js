@@ -16,8 +16,7 @@ export default function Profile() {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    if (helpers.isValidToken(token)) {
-      helpers.logout();
+    if (!helpers.isValidToken(token)) {
       navigate('/login');
     }
 
