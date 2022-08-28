@@ -51,8 +51,8 @@ export default function OrderItem() {
         {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
         {!error && !loading && orderItems
         && (
-          <div>
-            <OrderItemList orderItems={orderItems} />
+          <div className="row">
+            <OrderItemList className="col-8" orderItems={orderItems} />
           </div>
         )}
       </div>
