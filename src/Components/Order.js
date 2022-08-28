@@ -6,13 +6,13 @@ import Toast from './Toast';
 import Loading from './Loading';
 
 export default function Order({ total, handleSubmitOrder }) {
-  const dateNow = new Date();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showToast, setShowToast] = useState(false);
   const [paymentOpts, setPaymentOpts] = useState([]);
   const [coupons, setCoupons] = useState([]);
+  const [selectedCoupon, setSelectedCoupon] = useState(null);
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -52,6 +52,7 @@ export default function Order({ total, handleSubmitOrder }) {
           setCoupons(result.data);
           setLoading(result.loading);
           setError(result.error);
+          setSelectedCoupon(0);
         } else {
           setError(result);
           setShowToast(true);
@@ -76,12 +77,17 @@ export default function Order({ total, handleSubmitOrder }) {
           <form onSubmit={handleSubmitOrder}>
             <div className="form-group">
               Base total price
-              <input defaultValue={`Rp.${total}`} type="text" className="form-control" id="total" style={{ backgroundColor: '#ccc' }} readOnly />
+              <input defaultValue={`Rp.${total}`} type="text" className="form-control" id="baseTotal" style={{ backgroundColor: '#ccc' }} readOnly />
+            </div>
+            <br />
+            <div className="form-group">
+              Total price
+              <input value={`Rp.${selectedCoupon !== null ? (total - (total * coupons[selectedCoupon].amount) / 100) : total}`} type="text" className="form-control" id="total" style={{ backgroundColor: '#ccc' }} readOnly />
             </div>
             <br />
             <div className="form-group">
               Payment options
-              <select className="form-select" id="paymentOptionID">
+              <select className="form-select" id="paymentOptID">
                 {paymentOpts && paymentOpts.map((item) => (
                   <option value={item.id}>{item.name}</option>
                 ))}
@@ -90,16 +96,13 @@ export default function Order({ total, handleSubmitOrder }) {
             <br />
             <div className="form-group">
               Coupons
-              <select className="form-select" id="paymentOptionID">
+              <select className="form-select" id="couponID" onChange={(e) => setSelectedCoupon(e.target.selectedIndex)}>
                 { coupons && coupons.map((item) => (
-                  <option value={item.id}>{item.name}</option>
+                  <option value={item.id}>
+                    {item.name}
+                  </option>
                 ))}
               </select>
-            </div>
-            <br />
-            <div className="form-group">
-              Ordered date
-              <input defaultValue={dateNow.toLocaleDateString()} type="datetime-local" className="form-control" id="orderedDate" required />
             </div>
             <br />
             <button type="submit">Submit</button>

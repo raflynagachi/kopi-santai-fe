@@ -13,6 +13,7 @@ export default function OrderItem() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showToast, setShowToast] = useState(false);
+  const [showToastSuccess, setShowToastSuccess] = useState(false);
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -53,17 +54,55 @@ export default function OrderItem() {
     setTotal(tmp);
   }, [orderItems]);
 
+  const handleSubmitOrder = async (e) => {
+    e.preventDefault();
+    const dataForm = e.target.elements;
+
+    if (!helpers.isValidToken(token)) {
+      alert('unauthorized');
+      localStorage.setItem('token', '');
+      navigate('/login');
+    }
+
+    const dateNow = new Date();
+
+    const requestBody = {
+      paymentOptID: parseInt(dataForm.paymentOptID.value, 10),
+      couponID: parseInt(dataForm.couponID.value, 10),
+      orderedDate: dateNow,
+    };
+
+    const url = `${API.Orders}`;
+    const requestOpt = helpers.requestOptions(requestBody, 'POST', token);
+    fetch(url, requestOpt)
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.statusCode === 200) {
+          setShowToastSuccess(true);
+          setTimeout(() => { navigate('/'); }, 2000);
+        } else {
+          setError(result);
+          setShowToast(true);
+        }
+      })
+      .catch((err) => {
+        setError(err);
+        setShowToast(true);
+      });
+  };
+
   return (
     <div>
       {loading && <Loading />}
       <div style={{ width: '90%' }} className="d-flex flex-column mx-auto my-4 justify-content-center align-items-center">
         <h3 className="mt-4 text-center">Order Items - Cart</h3>
         {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
+        <Toast show={showToastSuccess} setShow={setShowToastSuccess} message="order checkout success" />
         {!error && !loading && orderItems && total
         && (
           <div className="d-flex flex-row">
             <OrderItemList orderItems={orderItems} />
-            <Order className="mx-2" total={total} />
+            <Order className="mx-2" total={total} handleSubmitOrder={handleSubmitOrder} />
           </div>
         )}
       </div>
