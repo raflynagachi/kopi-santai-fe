@@ -3,13 +3,57 @@ import { useNavigate } from 'react-router-dom';
 import format from '../../Utils/Format';
 import { API, helpers } from '../../Utils/API';
 import Toast from '../Toast';
+import Modal from '../Modal';
+import OrderItemForm from './OrderItemForm';
 
 export default function OrderItemCard({ orderItem }) {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [showToastUpdate, setShowToastUpdate] = useState(false);
   const [showToastDelete, setShowToastDelete] = useState(false);
   const token = localStorage.getItem('token');
+
+  const showOrderItem = () => {
+    setShowModal(true);
+  };
+
+  const updateOrderItem = async (e) => {
+    e.preventDefault();
+    const dataForm = e.target.elements;
+
+    if (!helpers.isValidToken(token)) {
+      alert('unauthorized');
+      localStorage.setItem('token', '');
+      navigate('/login');
+    }
+
+    const requestBody = {
+      quantity: parseInt(dataForm.quantity.value, 10),
+    };
+
+    const url = `${API.OrderItems}/${orderItem.id}`;
+    const requestOpt = helpers.requestOptions(requestBody, 'PATCH', token);
+    fetch(url, requestOpt)
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.statusCode === 200) {
+          setShowToastUpdate(true);
+          setShowModal(false);
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        } else {
+          setError(result);
+          setShowToast(true);
+        }
+      })
+      .catch((err) => {
+        setError(err);
+        setShowToast(true);
+      });
+  };
 
   const deleteOrder = (e) => {
     e.preventDefault();
@@ -27,7 +71,9 @@ export default function OrderItemCard({ orderItem }) {
       .then((result) => {
         if (result.statusCode === 200) {
           setShowToastDelete(true);
-          window.location.reload();
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
         } else {
           setError(result);
           setShowToast(true);
@@ -42,7 +88,9 @@ export default function OrderItemCard({ orderItem }) {
   return (
     <div className="d-flex flex-row justify-content-center align-items-center border my-2 rounded p-2">
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
+      {showModal && <Modal show={showModal} setShow={setShowModal} title="Order Item"><OrderItemForm menuItem={orderItem} handleSubmit={updateOrderItem} /></Modal>}
       <Toast show={showToastDelete} setShow={setShowToastDelete} message="Order item deleted successfully" />
+      <Toast show={showToastUpdate} setShow={setShowToastUpdate} message="Order item updated successfully" />
       <img className="p-2 m-3 rounded border" style={{ width: '12rem', height: '12rem' }} src={format.displayByteImage(orderItem.menu.image)} alt="menu" />
       <div className="d-flex flex-column pt-4">
         <h5 style={{ fontSize: '0.9em' }} className="card-title">{orderItem.menu.name}</h5>
@@ -80,7 +128,8 @@ export default function OrderItemCard({ orderItem }) {
           </div>
         </div>
       </div>
-      <div className="d-flex h-100">
+      <div className="d-flex h-100 align-text-top">
+        <button type="button" className="btn d-flex align-items-start pt-0" onClick={showOrderItem}>Edit</button>
         {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
         <button type="button" className="btn btn-close" onClick={deleteOrder} />
       </div>
