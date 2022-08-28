@@ -7,6 +7,7 @@ import MenuPage from './Pages/Menu';
 import PageNotFound from './Pages/PageNotFound';
 import Profile from './Pages/Profile';
 import MenuDetail from './Pages/MenuDetail';
+import OrderItem from './Pages/OrderItem';
 
 function App() {
   return (
@@ -34,6 +35,10 @@ function App() {
         <Route
           path="/menu/:id"
           element={<MenuDetail />}
+        />
+        <Route
+          path="/cart"
+          element={<OrderItem />}
         />
       </Route>
       <Route

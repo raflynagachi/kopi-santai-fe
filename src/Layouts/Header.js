@@ -42,6 +42,11 @@ export default function Header() {
                 </NavLink>
               </li>
               <li className="nav-item">
+                <NavLink data-testid="navlink-order" to="cart">
+                  Cart
+                </NavLink>
+              </li>
+              <li className="nav-item">
                 <NavLink data-testid="navlink-order" to="order">
                   Order
                 </NavLink>
