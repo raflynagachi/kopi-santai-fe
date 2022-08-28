@@ -29,6 +29,9 @@ export default function Register() {
           localStorage.setItem('token', result.data.token);
           navigate('/');
           window.location.reload();
+        } else {
+          setError(result);
+          setShowToast(true);
         }
       })
       .catch((err) => {

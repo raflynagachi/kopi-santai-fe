@@ -29,11 +29,9 @@ export default function Profile() {
       .then((result) => {
         if (result.statusCode === 200) {
           setData(result.data);
-          setLoading(result.loading);
-          setError(result.error);
         } else if (result.statusCode === 401) {
           alert('unauthorized error');
-          navigate('/login');
+          navigate('/');
         }
       })
       .catch((err) => {
