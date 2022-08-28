@@ -34,3 +34,4 @@ API.Games = `${baseUrl}/games`;
 API.GamePrize = `${baseUrl}/game-prize`;
 API.Promotions = `${baseUrl}/promotions`;
 API.Deliveries = `${baseUrl}/deliveries`;
+API.PaymentOpt = `${baseUrl}/payment-options`;

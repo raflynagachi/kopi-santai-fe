@@ -4,9 +4,11 @@ import { API, helpers } from '../Utils/API';
 import Loading from '../Components/Loading';
 import Toast from '../Components/Toast';
 import OrderItemList from '../Components/OrderItem/OrderItemList';
+import Order from '../Components/Order';
 
 export default function OrderItem() {
   const navigate = useNavigate();
+  const [total, setTotal] = useState(0);
   const [orderItems, setOrderItems] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -43,16 +45,25 @@ export default function OrderItem() {
       });
   }, []);
 
+  useEffect(() => {
+    let tmp = 0;
+    for (let i = 0; i < orderItems.length; i += 1) {
+      tmp += (orderItems[i].menu.price * orderItems[i].quantity);
+    }
+    setTotal(tmp);
+  }, [orderItems]);
+
   return (
     <div>
       {loading && <Loading />}
-      <div className="d-flex flex-column w-75 mx-auto my-4 justify-content-center align-items-center">
+      <div style={{ width: '90%' }} className="d-flex flex-column mx-auto my-4 justify-content-center align-items-center">
         <h3 className="mt-4 text-center">Order Items - Cart</h3>
         {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
-        {!error && !loading && orderItems
+        {!error && !loading && orderItems && total
         && (
-          <div className="row">
-            <OrderItemList className="col-8" orderItems={orderItems} />
+          <div className="d-flex flex-row">
+            <OrderItemList orderItems={orderItems} />
+            <Order className="mx-2" total={total} />
           </div>
         )}
       </div>

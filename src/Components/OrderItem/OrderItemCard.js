@@ -92,20 +92,20 @@ export default function OrderItemCard({ orderItem }) {
       <Toast show={showToastDelete} setShow={setShowToastDelete} message="Order item deleted successfully" />
       <Toast show={showToastUpdate} setShow={setShowToastUpdate} message="Order item updated successfully" />
       <img className="p-2 m-3 rounded border" style={{ width: '12rem', height: '12rem' }} src={format.displayByteImage(orderItem.menu.image)} alt="menu" />
-      <div className="d-flex flex-column pt-4">
+      <div className="d-flex flex-column pt-4 w-100">
         <h5 style={{ fontSize: '0.9em' }} className="card-title">{orderItem.menu.name}</h5>
         <p style={{ fontSize: '0.75em' }} className="col-6">
           Category:
           {orderItem.menu.categoryName}
         </p>
         <div className="row w-100" style={{ fontSize: '0.8em' }}>
-          <div className="col">
+          <div className="col-12">
             <span className="fa fa-star checked" />
             {' '}
             {orderItem.menu.rating}
           </div>
-          <div className="col text-start">
-            <table className="table">
+          <div className="col-12 text-start">
+            <table className="w-100 table">
               <tbody>
                 <tr>
                   <th>Price of menu</th>
