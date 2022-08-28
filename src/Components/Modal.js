@@ -5,7 +5,7 @@ export default function Modal({
 
   return (
     <div className="modal" style={showModal} tabIndex="-1">
-      <div className="modal-dialog">
+      <div className="modal-dialog modal-dialog-scrollable">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">{ title }</h5>
