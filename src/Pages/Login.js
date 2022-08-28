@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import FormWrapper from '../Components/Form/FormWrapper';
 import { API, helpers } from '../Utils/API';
@@ -43,6 +43,10 @@ export default function Login() {
           <input id="password" className="form-control my-3" type="password" placeholder="password" required />
           <button type="submit" className="btn btn-primary w-100 my-2">Login</button>
         </form>
+        <p>
+          Not registered yet?
+          <Link style={{ textDecoration: 'none' }} to="/register"> Register</Link>
+        </p>
       </FormWrapper>
     </>
   );
