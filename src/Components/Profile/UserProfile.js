@@ -23,6 +23,8 @@ export default function UserProfile({ data }) {
     const dataForm = e.target.elements;
 
     if (!helpers.isValidToken(token)) {
+      alert('unauthorized');
+      localStorage.setItem('token', '');
       navigate('/login');
     }
 

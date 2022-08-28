@@ -17,6 +17,8 @@ export default function Profile() {
 
   useEffect(() => {
     if (!helpers.isValidToken(token)) {
+      alert('unauthorized');
+      localStorage.setItem('token', '');
       navigate('/login');
     }
 
