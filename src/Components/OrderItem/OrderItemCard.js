@@ -88,7 +88,7 @@ export default function OrderItemCard({ orderItem }) {
   return (
     <div className="d-flex flex-row justify-content-center align-items-center border my-2 rounded p-2">
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
-      {showModal && <Modal show={showModal} setShow={setShowModal} title="Order Item"><OrderItemForm menuItem={orderItem} handleSubmit={updateOrderItem} /></Modal>}
+      {showModal && <Modal show={showModal} setShow={setShowModal} title="Order Item"><OrderItemForm qty={orderItem.quantity} menuItem={orderItem} handleSubmit={updateOrderItem} /></Modal>}
       <Toast show={showToastDelete} setShow={setShowToastDelete} message="Order item deleted successfully" />
       <Toast show={showToastUpdate} setShow={setShowToastUpdate} message="Order item updated successfully" />
       <img className="p-2 m-3 rounded border" style={{ width: '12rem', height: '12rem' }} src={format.displayByteImage(orderItem.menu.image)} alt="menu" />

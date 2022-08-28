@@ -77,7 +77,7 @@ export default function Order({ total, handleSubmitOrder }) {
           <form onSubmit={handleSubmitOrder}>
             <div className="form-group">
               Base total price
-              <input defaultValue={`Rp.${total}`} type="text" className="form-control" id="baseTotal" style={{ backgroundColor: '#ccc' }} readOnly />
+              <input defaultValue={`Rp.${total}`} type="text" className="form-control" id="baseTotal" style={{ backgroundColor: '#ccc', textDecoration: 'line-through' }} readOnly />
             </div>
             <br />
             <div className="form-group">

@@ -2,14 +2,18 @@ import { useEffect, useState } from 'react';
 import FormWrapper from '../Form/FormWrapper';
 import MenuOptionChecklist from './MenuOptionChecklist';
 
-export default function OrderItemForm({ menuItem, handleSubmit }) {
+export default function OrderItemForm({ qty, menuItem, handleSubmit }) {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     if (quantity <= 1) {
       setQuantity(1);
     }
-  }, [quantity]);
+  }, [quantity, qty]);
+
+  useEffect(() => {
+    setQuantity(qty);
+  }, [qty]);
 
   return (
     <FormWrapper>
