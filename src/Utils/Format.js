@@ -5,6 +5,13 @@ const format = {
   formatDate: (date) => (
     new Date(date).toUTCString()
   ),
+  priceFormatter: (number) => {
+    const formatter = new Intl.NumberFormat('ID', {
+      style: 'currency',
+      currency: 'IDR',
+    });
+    return formatter.format(number).replace('Rp', 'IDR');
+  },
   formatToDate: (date) => (
     new Date(date)
   ),

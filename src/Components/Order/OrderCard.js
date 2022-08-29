@@ -20,7 +20,7 @@ export default function OrderCard({ order }) {
             {`Payment Option: ${order.paymentOption.name}`}
           </div>
           <div className="col-12">
-            {`Total Price: Rp.${order.totalPrice}`}
+            {`Total Price: ${format.priceFormatter(order.totalPrice)}`}
           </div>
           <div className="col-10 text-start">
             <div className="justify-content-center">

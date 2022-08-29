@@ -124,8 +124,7 @@ export default function MenuDetail() {
                     {menuItem.menu.rating}
                   </div>
                   <div className="col-9 text-end">
-                    Rp
-                    {` ${menuItem.menu.price}`}
+                    {` ${format.priceFormatter(menuItem.menu.price)}`}
                   </div>
                 </div>
                 <div className="card-text row">

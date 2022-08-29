@@ -18,8 +18,7 @@ export default function MenuCard({ menuItem }) {
             {menuItem.rating}
           </div>
           <div className="col-9 text-end">
-            Rp
-            {` ${menuItem.price}`}
+            {` ${format.priceFormatter(menuItem.price)}`}
           </div>
         </div>
         <Link to={`/menu/${menuItem.id}`}>See detail</Link>

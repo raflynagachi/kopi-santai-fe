@@ -156,7 +156,7 @@ export default function OrderItemCard({ showButton, showCreateReview, orderItem 
               <tbody>
                 <tr>
                   <th>Price of menu</th>
-                  <td>{`Rp.${orderItem.menu.price}`}</td>
+                  <td>{`${format.priceFormatter(orderItem.menu.price)}`}</td>
                 </tr>
                 <tr>
                   <th>Quantity</th>
@@ -168,7 +168,7 @@ export default function OrderItemCard({ showButton, showCreateReview, orderItem 
                 </tr>
                 <tr>
                   <th>Total price</th>
-                  <td>{`Rp.${orderItem.menu.price * orderItem.quantity}`}</td>
+                  <td>{`${format.priceFormatter(orderItem.menu.price * orderItem.quantity)}`}</td>
                 </tr>
               </tbody>
             </table>

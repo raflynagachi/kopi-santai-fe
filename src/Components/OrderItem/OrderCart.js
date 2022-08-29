@@ -4,6 +4,7 @@ import FormWrapper from '../Form/FormWrapper';
 import { API, helpers } from '../../Utils/API';
 import Toast from '../Toast';
 import Loading from '../Loading';
+import format from '../../Utils/Format';
 
 export default function OrderCart({ total, handleSubmitOrder }) {
   const navigate = useNavigate();
@@ -77,12 +78,12 @@ export default function OrderCart({ total, handleSubmitOrder }) {
           <form onSubmit={handleSubmitOrder}>
             <div className="form-group">
               Base total price
-              <input defaultValue={`Rp.${total}`} type="text" className="form-control" id="baseTotal" style={{ backgroundColor: '#ccc', textDecoration: 'line-through' }} readOnly />
+              <input defaultValue={`${format.priceFormatter(total)}`} type="text" className="form-control" id="baseTotal" style={{ backgroundColor: '#ccc', textDecoration: 'line-through' }} readOnly />
             </div>
             <br />
             <div className="form-group">
               Total price
-              <input value={`Rp.${selectedCoupon !== null ? (total - (total * coupons[selectedCoupon].amount) / 100) : total}`} type="text" className="form-control" id="total" style={{ backgroundColor: '#ccc' }} readOnly />
+              <input value={`${format.priceFormatter(selectedCoupon !== null ? (total - (total * coupons[selectedCoupon].amount) / 100) : total)}`} type="text" className="form-control" id="total" style={{ backgroundColor: '#ccc' }} readOnly />
             </div>
             <br />
             <div className="form-group">
