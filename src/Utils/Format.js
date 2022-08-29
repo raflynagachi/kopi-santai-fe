@@ -5,6 +5,9 @@ const format = {
   formatDate: (date) => (
     new Date(date).toUTCString()
   ),
+  formatToDate: (date) => (
+    new Date(date)
+  ),
   getBase64: (file) => new Promise((resolve) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
