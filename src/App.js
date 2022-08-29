@@ -10,6 +10,7 @@ import MenuDetail from './Pages/MenuDetail';
 import OrderItem from './Pages/OrderItem';
 import Order from './Pages/Order';
 import Home from './Pages/Home';
+import Games from './Pages/Games';
 
 function App() {
   return (
@@ -41,6 +42,10 @@ function App() {
         <Route
           path="/menu/:id"
           element={<MenuDetail />}
+        />
+        <Route
+          path="/games"
+          element={<Games />}
         />
         <Route
           path="/cart"
