@@ -43,22 +43,22 @@ export default function HeaderAdmin() {
           <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul className="navbar-nav gap-3 p-2 align-items-end">
               <li className="nav-item">
-                <NavLink data-testid="navlink-home" to="internal">
+                <NavLink data-testid="navlink-home" to="/internal">
                   Dashboard
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink data-testid="navlink-menu" to="internal/menu">
+                <NavLink data-testid="navlink-menu" to="/internal/menu">
                   Menu
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink data-testid="navlink-menu" to="internal/coupon">
+                <NavLink data-testid="navlink-menu" to="/internal/coupon">
                   Coupon
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink data-testid="navlink-menu" to="internal/user">
+                <NavLink data-testid="navlink-menu" to="/internal/user">
                   User
                 </NavLink>
               </li>
