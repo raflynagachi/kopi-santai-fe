@@ -119,7 +119,7 @@ export default function MenuDetail() {
                 </div>
                 <div className="card-text row">
                   <div className="col-3">
-                    <span className="fa fa-star checked" />
+                    <span className="fa fa-star checked" style={{ color: '#FFD27D' }} />
                     {' '}
                     {menuItem.menu.rating}
                   </div>

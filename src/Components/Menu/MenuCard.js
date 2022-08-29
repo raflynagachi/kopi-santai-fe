@@ -13,7 +13,7 @@ export default function MenuCard({ menuItem }) {
         </p>
         <div className="card-text row">
           <div className="col-3">
-            <span className="fa fa-star checked" />
+            <span className="fa fa-star checked" style={{ color: '#FFD27D' }} />
             {' '}
             {menuItem.rating}
           </div>
