@@ -2,6 +2,9 @@ const format = {
   displayByteImage: (image) => (
     `data:image/jpeg;base64,${image}`
   ),
+  formatDate: (date) => (
+    new Date(date).toUTCString()
+  ),
   getBase64: (file) => new Promise((resolve) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);

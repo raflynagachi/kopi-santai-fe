@@ -6,7 +6,7 @@ export default function OrderItemList({ orderItems }) {
       {orderItems.length === 0 && <div className="list-group-item">Order Items or Cart is empty</div>}
       {
           orderItems && orderItems.map((item) => (
-            <OrderItemCard className="list-group-item" orderItem={item} />
+            <OrderItemCard className="list-group-item" showButton orderItem={item} />
           ))
         }
     </div>

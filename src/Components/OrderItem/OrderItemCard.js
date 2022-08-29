@@ -6,7 +6,7 @@ import Toast from '../Toast';
 import Modal from '../Modal';
 import OrderItemForm from './OrderItemForm';
 
-export default function OrderItemCard({ orderItem }) {
+export default function OrderItemCard({ showButton, orderItem }) {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -86,7 +86,7 @@ export default function OrderItemCard({ orderItem }) {
   };
 
   return (
-    <div className="d-flex flex-row justify-content-center align-items-center border my-2 rounded p-2">
+    <div className="d-flex flex-row justify-content-center align-items-center border my-2 rounded p-2" style={{ backgroundColor: '#fff' }}>
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
       {showModal && <Modal show={showModal} setShow={setShowModal} title="OrderCart Item"><OrderItemForm qty={orderItem.quantity} menuItem={orderItem} handleSubmit={updateOrderItem} /></Modal>}
       <Toast show={showToastDelete} setShow={setShowToastDelete} message="OrderCart item deleted successfully" />
@@ -128,11 +128,16 @@ export default function OrderItemCard({ orderItem }) {
           </div>
         </div>
       </div>
-      <div className="d-flex h-100 align-text-top">
-        <button type="button" className="btn d-flex align-items-start pt-0" onClick={showOrderItem}>Edit</button>
-        {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-        <button type="button" className="btn btn-close" onClick={deleteOrder} />
-      </div>
+      {
+        showButton
+        && (
+        <div className="d-flex h-100 align-text-top">
+          <button type="button" className="btn d-flex align-items-start pt-0" onClick={showOrderItem}>Edit</button>
+          {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+          <button type="button" className="btn btn-close" onClick={deleteOrder} />
+        </div>
+        )
+      }
     </div>
   );
 }

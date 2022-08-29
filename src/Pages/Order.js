@@ -1,0 +1,61 @@
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { API, helpers } from '../Utils/API';
+import Loading from '../Components/Loading';
+import Toast from '../Components/Toast';
+import OrderList from '../Components/Order/OrderList';
+
+export default function Order() {
+  const navigate = useNavigate();
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [showToast, setShowToast] = useState(false);
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    if (!helpers.isValidToken(token)) {
+      alert('unauthorized');
+      localStorage.setItem('token', '');
+      navigate('/login');
+    }
+
+    const url = `${API.Orders}`;
+    const reqOpt = { headers: { Authorization: `Bearer ${token}` } };
+    fetch(url, reqOpt)
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.statusCode === 200) {
+          setOrders(result.data);
+          setLoading(result.loading);
+          setError(result.error);
+        } else {
+          setError(result);
+          setShowToast(true);
+        }
+      })
+      .catch((err) => {
+        setError(err);
+        setShowToast(true);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  return (
+    <div>
+      <div style={{ width: '90%' }} className="d-flex flex-column mx-auto my-4 justify-content-center align-items-center">
+        <h3 className="mt-4 text-center">Order History</h3>
+        {loading && <Loading />}
+        {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
+        {!error && !loading && orders
+          && (
+            <div className="d-flex flex-row">
+              <OrderList orders={orders} />
+            </div>
+          )}
+      </div>
+    </div>
+  );
+}
