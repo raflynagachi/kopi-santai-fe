@@ -7,7 +7,7 @@ import Toast from '../../Components/Toast';
 import Loading from '../../Components/Loading';
 import FilterMenu from '../../Components/Menu/FilterMenu';
 import Modal from '../../Components/Modal';
-import MenuCreateForm from '../../Components/Admin/MenuCreateForm';
+import MenuForm from '../../Components/Admin/MenuForm';
 import format from '../../Utils/Format';
 
 export default function MenuAdmin() {
@@ -21,7 +21,7 @@ export default function MenuAdmin() {
   const [queryParam, setQueryParam] = useState({});
   const token = localStorage.getItem('token');
 
-  const menuRes = useFetch(API.Menus + helpers.queryParamMenuToString(queryParam));
+  const menuRes = useFetch(API.InternalMenus + helpers.queryParamMenuToString(queryParam));
 
   const createMenu = () => {
     setShowModalCreateMenu(true);
@@ -53,7 +53,7 @@ export default function MenuAdmin() {
       navigate('/login');
     }
 
-    let base64;
+    let base64 = dataForm.imageByte.value;
     const file = dataForm.image.files[0];
     if (file) {
       base64 = await format.getBase64(file);
@@ -90,7 +90,7 @@ export default function MenuAdmin() {
     <div className="container my-2">
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
       <Toast show={showToastCreateSuccess} setShow={setShowToastCreateSuccess} message="Menu created successfully" />
-      {showModalCreateMenu && <Modal show={showModalCreateMenu} setShow={setShowModalCreateMenu} title="Create Menu"><MenuCreateForm handleSubmit={submitCreateMenu} /></Modal>}
+      {showModalCreateMenu && <Modal show={showModalCreateMenu} setShow={setShowModalCreateMenu} title="Create Menu"><MenuForm handleSubmit={submitCreateMenu} /></Modal>}
       <h4 className="text-center">Menus Management</h4>
       <div className="d-flex justify-content-end">
         <button type="button" className="btn m-2" style={{ backgroundColor: '#afffaf' }} onClick={() => { createMenu(); }}>Create Menu</button>

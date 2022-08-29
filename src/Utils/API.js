@@ -32,6 +32,7 @@ API.Users = `${baseUrl}/users`;
 API.OrderItems = `${baseUrl}/order-items`;
 API.Orders = `${baseUrl}/orders`;
 API.InternalOrders = `${baseUrl}/internal/orders`;
+API.InternalMenus = `${baseUrl}/internal/menus`;
 API.Reviews = `${baseUrl}/reviews`;
 API.Coupons = `${baseUrl}/coupons`;
 API.Games = `${baseUrl}/games`;
