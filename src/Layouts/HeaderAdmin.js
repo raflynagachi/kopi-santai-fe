@@ -17,7 +17,8 @@ export default function HeaderAdmin() {
   useEffect(() => {
     if (helpers.isValidToken(token)) {
       if (jwt(token).user.role !== 'ADMIN') {
-        logout();
+        alert('Forbidden access');
+        navigate('/');
       }
     }
   }, [token]);
@@ -57,16 +58,11 @@ export default function HeaderAdmin() {
                   Coupon
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink data-testid="navlink-menu" to="/internal/user">
-                  User
-                </NavLink>
-              </li>
               |
               { token ? (
                 <>
                   <li className="nav-item">
-                    <NavLink data-testid="navlink-profile" to="profile">
+                    <NavLink data-testid="navlink-profile" to="/profile">
                       Profile
                     </NavLink>
                   </li>

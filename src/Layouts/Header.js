@@ -82,7 +82,7 @@ export default function Header() {
                     role === 'ADMIN'
                     && (
                     <li className="nav-item ">
-                      <NavLink className="btn py-0 px-2" style={{ backgroundColor: '#63ddff', color: '#333' }} data-testid="navlink-admin" to="internal">
+                      <NavLink className="btn py-0 px-2" style={{ backgroundColor: '#63ddff', color: '#333' }} data-testid="navlink-admin" to="internal/">
                         Admin page
                       </NavLink>
                     </li>

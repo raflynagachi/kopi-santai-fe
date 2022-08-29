@@ -64,7 +64,7 @@ export default function Dashboard() {
         !error && !loading
         && (
         <div>
-          <h4 className="text-center my-2">Orders Table</h4>
+          <h4 className="text-center my-2">Orders Management</h4>
           <h5 className="text-end">
             <span style={{ fontSize: '0.9rem', fontWeight: 'normal' }}>Total earnings: </span>
             {`${format.priceFormatter(earnings)}`}
