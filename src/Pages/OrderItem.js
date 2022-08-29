@@ -4,7 +4,7 @@ import { API, helpers } from '../Utils/API';
 import Loading from '../Components/Loading';
 import Toast from '../Components/Toast';
 import OrderItemList from '../Components/OrderItem/OrderItemList';
-import OrderCart from '../Components/OrderCart';
+import OrderCart from '../Components/OrderItem/OrderCart';
 
 export default function OrderItem() {
   const navigate = useNavigate();

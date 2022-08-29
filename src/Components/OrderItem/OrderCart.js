@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import FormWrapper from './Form/FormWrapper';
-import { API, helpers } from '../Utils/API';
-import Toast from './Toast';
-import Loading from './Loading';
+import FormWrapper from '../Form/FormWrapper';
+import { API, helpers } from '../../Utils/API';
+import Toast from '../Toast';
+import Loading from '../Loading';
 
 export default function OrderCart({ total, handleSubmitOrder }) {
   const navigate = useNavigate();
