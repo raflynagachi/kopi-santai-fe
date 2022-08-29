@@ -9,7 +9,7 @@ import OrderCart from '../Components/OrderCart';
 export default function OrderItem() {
   const navigate = useNavigate();
   const [total, setTotal] = useState(0);
-  const [orderItems, setOrderItems] = useState({});
+  const [orderItems, setOrderItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showToast, setShowToast] = useState(false);
@@ -98,11 +98,11 @@ export default function OrderItem() {
         {loading && <Loading />}
         {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
         <Toast show={showToastSuccess} setShow={setShowToastSuccess} message="order checkout success" />
-        {!error && !loading && orderItems && total
+        {!loading
         && (
           <div className="d-flex flex-row">
             <OrderItemList orderItems={orderItems} />
-            <OrderCart className="mx-2" total={total} handleSubmitOrder={handleSubmitOrder} />
+            {total !== 0 && <OrderCart className="mx-2" total={total} handleSubmitOrder={handleSubmitOrder} />}
           </div>
         )}
       </div>
