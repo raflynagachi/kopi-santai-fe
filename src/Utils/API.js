@@ -9,7 +9,7 @@ export const helpers = {
     body: JSON.stringify(dataObj),
   }),
   isValidToken: (token) => {
-    if (token === '') return false;
+    if (token === '' || token === null) return false;
     const decodedToken = jwt(token);
     const dateNow = new Date();
 

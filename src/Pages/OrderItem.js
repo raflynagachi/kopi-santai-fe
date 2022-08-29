@@ -93,9 +93,9 @@ export default function OrderItem() {
 
   return (
     <div>
-      {loading && <Loading />}
       <div style={{ width: '90%' }} className="d-flex flex-column mx-auto my-4 justify-content-center align-items-center">
         <h3 className="mt-4 text-center">Order Items - Cart</h3>
+        {loading && <Loading />}
         {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
         <Toast show={showToastSuccess} setShow={setShowToastSuccess} message="order checkout success" />
         {!error && !loading && orderItems && total
