@@ -12,6 +12,7 @@ import Order from './Pages/Order';
 import Home from './Pages/Home';
 import Games from './Pages/Games';
 import Dashboard from './Pages/Admin/Dashboard';
+import MenuAdmin from './Pages/Admin/MenuAdmin';
 
 function App() {
   return (
@@ -64,6 +65,10 @@ function App() {
         <Route
           path=""
           element={<Dashboard />}
+        />
+        <Route
+          path="menu"
+          element={<MenuAdmin />}
         />
       </Route>
       <Route
