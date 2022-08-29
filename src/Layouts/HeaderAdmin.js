@@ -1,19 +1,12 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './Layout.css';
 import jwt from 'jwt-decode';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { helpers } from '../Utils/API';
 
-export default function Header() {
+export default function HeaderAdmin() {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
-  const [role, setRole] = useState('USER');
-
-  useEffect(() => {
-    if (helpers.isValidToken(token)) {
-      setRole(jwt(token).user.role);
-    }
-  }, [token]);
 
   const logout = () => {
     navigate('/login');
@@ -21,12 +14,20 @@ export default function Header() {
     window.location.reload();
   };
 
+  useEffect(() => {
+    if (helpers.isValidToken(token)) {
+      if (jwt(token).user.role !== 'ADMIN') {
+        logout();
+      }
+    }
+  }, [token]);
+
   return (
     <header>
       <nav className="navbar navbar-expand-md navbar-light">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            <h3 className="text-logo">Kopi Santai</h3>
+            <h3 className="text-logo">Kopi Santai (ADMIN)</h3>
           </Link>
           <button
             className="navbar-toggler"
@@ -42,34 +43,25 @@ export default function Header() {
           <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul className="navbar-nav gap-3 p-2 align-items-end">
               <li className="nav-item">
-                <NavLink data-testid="navlink-home" to="/">
-                  Home
+                <NavLink data-testid="navlink-home" to="internal">
+                  Dashboard
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink data-testid="navlink-menu" to="menu">
+                <NavLink data-testid="navlink-menu" to="internal/menu">
                   Menu
                 </NavLink>
               </li>
-              { token && (
-                <>
-                  <li className="nav-item">
-                    <NavLink data-testid="navlink-orderItem" to="cart">
-                      Cart
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink data-testid="navlink-order" to="order">
-                      Order
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink data-testid="navlink-games" to="games">
-                      Games
-                    </NavLink>
-                  </li>
-                </>
-              )}
+              <li className="nav-item">
+                <NavLink data-testid="navlink-menu" to="internal/coupon">
+                  Coupon
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink data-testid="navlink-menu" to="internal/user">
+                  User
+                </NavLink>
+              </li>
               |
               { token ? (
                 <>
@@ -78,16 +70,11 @@ export default function Header() {
                       Profile
                     </NavLink>
                   </li>
-                  {
-                    role === 'ADMIN'
-                    && (
-                    <li className="nav-item ">
-                      <NavLink className="btn py-0 px-2" style={{ backgroundColor: '#63ddff', color: '#333' }} data-testid="navlink-admin" to="internal">
-                        Admin page
-                      </NavLink>
-                    </li>
-                    )
-                  }
+                  <li className="nav-item ">
+                    <NavLink className="btn py-0 px-2" style={{ backgroundColor: '#63ddff', color: '#333' }} data-testid="navlink-admin" to="/">
+                      User page
+                    </NavLink>
+                  </li>
                   <li className="nav-item m-auto">
                     <button type="button" onClick={logout} className="btn py-0 px-2" style={{ backgroundColor: '#ff6d6d' }}>Logout</button>
                   </li>

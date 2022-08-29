@@ -11,6 +11,7 @@ import OrderItem from './Pages/OrderItem';
 import Order from './Pages/Order';
 import Home from './Pages/Home';
 import Games from './Pages/Games';
+import Dashboard from './Pages/Admin/Dashboard';
 
 function App() {
   return (
@@ -54,6 +55,15 @@ function App() {
         <Route
           path="/order"
           element={<Order />}
+        />
+      </Route>
+      <Route
+        path="internal"
+        element={<MainLayout isAdmin />}
+      >
+        <Route
+          path=""
+          element={<Dashboard />}
         />
       </Route>
       <Route
