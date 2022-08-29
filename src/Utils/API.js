@@ -18,6 +18,9 @@ export const helpers = {
   queryParamMenuToString: (q) => (
     `?category=${q.category ? q.category : ''}&sortBy=${q.sortBy ? q.sortBy : ''}&sort=${q.sort ? q.sort : ''}&search=${q.search ? q.search : ''}`
   ),
+  queryParamOrderToString: (q) => (
+    `${q.date ? `?date=${q.date}` : ''}`
+  ),
 };
 
 export function API() {}
@@ -28,6 +31,7 @@ API.Menus = `${baseUrl}/menus`;
 API.Users = `${baseUrl}/users`;
 API.OrderItems = `${baseUrl}/order-items`;
 API.Orders = `${baseUrl}/orders`;
+API.InternalOrders = `${baseUrl}/internal/orders`;
 API.Reviews = `${baseUrl}/reviews`;
 API.Coupons = `${baseUrl}/coupons`;
 API.Games = `${baseUrl}/games`;
