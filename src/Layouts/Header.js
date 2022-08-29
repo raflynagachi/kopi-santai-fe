@@ -1,9 +1,19 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './Layout.css';
+import jwt from 'jwt-decode';
+import { useEffect, useState } from 'react';
+import { helpers } from '../Utils/API';
 
 export default function Header() {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
+  const [role, setRole] = useState('USER');
+
+  useEffect(() => {
+    if (helpers.isValidToken(token)) {
+      setRole(jwt(token).user.role);
+    }
+  }, [token]);
 
   const logout = () => {
     navigate('/login');
@@ -41,21 +51,25 @@ export default function Header() {
                   Menu
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink data-testid="navlink-order" to="cart">
-                  Cart
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink data-testid="navlink-order" to="order">
-                  Order
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink data-testid="navlink-games" to="games">
-                  Games
-                </NavLink>
-              </li>
+              { token && (
+                <>
+                  <li className="nav-item">
+                    <NavLink data-testid="navlink-orderItem" to="cart">
+                      Cart
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink data-testid="navlink-order" to="order">
+                      Order
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink data-testid="navlink-games" to="games">
+                      Games
+                    </NavLink>
+                  </li>
+                </>
+              )}
               |
               { token ? (
                 <>
@@ -64,6 +78,16 @@ export default function Header() {
                       Profile
                     </NavLink>
                   </li>
+                  {
+                    role === 'ADMIN'
+                    && (
+                    <li className="nav-item ">
+                      <NavLink className="btn py-0 px-2" style={{ backgroundColor: '#63ddff', color: '#333' }} data-testid="navlink-admin" to="admin">
+                        Admin page
+                      </NavLink>
+                    </li>
+                    )
+                  }
                   <li className="nav-item m-auto">
                     <button type="button" onClick={logout} className="btn py-0 px-2" style={{ backgroundColor: '#ff6d6d' }}>Logout</button>
                   </li>
