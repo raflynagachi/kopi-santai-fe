@@ -8,6 +8,8 @@ import PageNotFound from './Pages/PageNotFound';
 import Profile from './Pages/Profile';
 import MenuDetail from './Pages/MenuDetail';
 import OrderItem from './Pages/OrderItem';
+import Order from './Pages/Order';
+import Home from './Pages/Home';
 
 function App() {
   return (
@@ -16,6 +18,10 @@ function App() {
         path="/"
         element={<MainLayout />}
       >
+        <Route
+          path="/"
+          element={<Home />}
+        />
         <Route
           path="login"
           element={<Login />}
@@ -39,6 +45,10 @@ function App() {
         <Route
           path="/cart"
           element={<OrderItem />}
+        />
+        <Route
+          path="/order"
+          element={<Order />}
         />
       </Route>
       <Route
