@@ -5,7 +5,7 @@ import { API, helpers } from '../Utils/API';
 import Toast from './Toast';
 import Loading from './Loading';
 
-export default function Order({ total, handleSubmitOrder }) {
+export default function OrderCart({ total, handleSubmitOrder }) {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -73,7 +73,7 @@ export default function Order({ total, handleSubmitOrder }) {
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
       {!error && !loading
         && (
-        <FormWrapper title="Order - Checkout">
+        <FormWrapper title="OrderCart - Checkout">
           <form onSubmit={handleSubmitOrder}>
             <div className="form-group">
               Base total price

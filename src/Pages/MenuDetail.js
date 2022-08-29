@@ -99,7 +99,7 @@ export default function MenuDetail() {
       {!error && !loading && menuItem
         && (
           <div>
-            {showModal && <Modal show={showModal} setShow={setShowModal} title="Order Item"><OrderItemForm menuItem={menuItem} handleSubmit={handleSubmitOrderItem} /></Modal>}
+            {showModal && <Modal show={showModal} setShow={setShowModal} title="OrderCart Item"><OrderItemForm menuItem={menuItem} handleSubmit={handleSubmitOrderItem} /></Modal>}
             <div className="card mx-auto mb-4" style={{ width: '24rem' }}>
               {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
               <Toast show={showToastSuccess} setShow={setShowToastSuccess} message="add order item success" />
@@ -114,7 +114,7 @@ export default function MenuDetail() {
                     </p>
                   </div>
                   <div className="col-4 d-flex h-75 justify-content-end">
-                    <button type="button" style={{ fontSize: '0.8em', backgroundColor: '#ffd294' }} onClick={showOrderItem} className="w-100 rounded">Order</button>
+                    <button type="button" style={{ fontSize: '0.8em', backgroundColor: '#ffd294' }} onClick={showOrderItem} className="w-100 rounded">OrderCart</button>
                   </div>
                 </div>
                 <div className="card-text row">

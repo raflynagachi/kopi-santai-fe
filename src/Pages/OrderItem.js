@@ -4,7 +4,7 @@ import { API, helpers } from '../Utils/API';
 import Loading from '../Components/Loading';
 import Toast from '../Components/Toast';
 import OrderItemList from '../Components/OrderItem/OrderItemList';
-import Order from '../Components/Order';
+import OrderCart from '../Components/OrderCart';
 
 export default function OrderItem() {
   const navigate = useNavigate();
@@ -102,7 +102,7 @@ export default function OrderItem() {
         && (
           <div className="d-flex flex-row">
             <OrderItemList orderItems={orderItems} />
-            <Order className="mx-2" total={total} handleSubmitOrder={handleSubmitOrder} />
+            <OrderCart className="mx-2" total={total} handleSubmitOrder={handleSubmitOrder} />
           </div>
         )}
       </div>
