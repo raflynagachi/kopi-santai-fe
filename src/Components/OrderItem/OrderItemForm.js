@@ -9,10 +9,12 @@ export default function OrderItemForm({ qty, menuItem, handleSubmit }) {
     if (quantity <= 1) {
       setQuantity(1);
     }
-  }, [quantity, qty]);
+  }, [quantity]);
 
   useEffect(() => {
-    setQuantity(qty);
+    if (qty) {
+      setQuantity(qty);
+    }
   }, [qty]);
 
   return (

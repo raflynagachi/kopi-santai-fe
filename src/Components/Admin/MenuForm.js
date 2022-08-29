@@ -5,7 +5,7 @@ import { API, helpers } from '../../Utils/API';
 import Loading from '../Loading';
 import Toast from '../Toast';
 
-export default function MenuCreateForm({ handleSubmit }) {
+export default function MenuForm({ menu, handleSubmit }) {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -50,8 +50,12 @@ export default function MenuCreateForm({ handleSubmit }) {
       <FormWrapper title="Create Menu">
         <form onSubmit={handleSubmit}>
           <div className="form-group">
+            <input type="text" className="form-control" id="id" defaultValue={menu && menu.id} hidden readOnly />
+          </div>
+          <br />
+          <div className="form-group">
             Category
-            <select className="form-select" id="categoryID">
+            <select className="form-select" id="categoryID" defaultValue={menu && menu.categoryID}>
               {categories.map((item) => (
                 <option key={item.id} value={item.id}>{item.name}</option>
               ))}
@@ -60,16 +64,17 @@ export default function MenuCreateForm({ handleSubmit }) {
           <br />
           <div className="form-group">
             Name
-            <input type="text" className="form-control" id="name" />
+            <input type="text" className="form-control" id="name" defaultValue={menu && menu.name} />
           </div>
           <br />
           <div className="form-group">
             Price
-            <input type="number" className="form-control" id="price" />
+            <input type="number" className="form-control" id="price" defaultValue={menu && menu.price} />
           </div>
           <br />
           <div className="form-group">
             Image
+            <input type="text" className="form-control" id="imageByte" value={menu && menu.image} hidden readOnly />
             <input type="file" className="form-control" id="image" />
           </div>
           <br />
