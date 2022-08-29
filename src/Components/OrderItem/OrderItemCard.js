@@ -26,42 +26,6 @@ export default function OrderItemCard({ showButton, showCreateReview, orderItem 
     setShowModalReview(true);
   };
 
-  const updateOrderItem = async (e) => {
-    e.preventDefault();
-    const dataForm = e.target.elements;
-
-    if (!helpers.isValidToken(token)) {
-      alert('unauthorized');
-      localStorage.setItem('token', '');
-      navigate('/login');
-    }
-
-    const requestBody = {
-      quantity: parseInt(dataForm.quantity.value, 10),
-    };
-
-    const url = `${API.OrderItems}/${orderItem.id}`;
-    const requestOpt = helpers.requestOptions(requestBody, 'PATCH', token);
-    fetch(url, requestOpt)
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.statusCode === 200) {
-          setShowToastUpdate(true);
-          setShowModal(false);
-          setTimeout(() => {
-            window.location.reload();
-          }, 2000);
-        } else {
-          setError(result);
-          setShowToast(true);
-        }
-      })
-      .catch((err) => {
-        setError(err);
-        setShowToast(true);
-      });
-  };
-
   const createReview = (e) => {
     e.preventDefault();
     const dataForm = e.target.elements;
@@ -100,9 +64,7 @@ export default function OrderItemCard({ showButton, showCreateReview, orderItem 
       });
   };
 
-  const deleteOrder = (e) => {
-    e.preventDefault();
-
+  const deleteOrder = () => {
     if (!helpers.isValidToken(token)) {
       alert('unauthorized');
       localStorage.setItem('token', '');
@@ -130,6 +92,48 @@ export default function OrderItemCard({ showButton, showCreateReview, orderItem 
       });
   };
 
+  const updateOrderItem = async (e) => {
+    e.preventDefault();
+    const dataForm = e.target.elements;
+
+    if (!helpers.isValidToken(token)) {
+      alert('unauthorized');
+      localStorage.setItem('token', '');
+      navigate('/login');
+    }
+
+    const requestBody = {
+      quantity: parseInt(dataForm.quantity.value, 10),
+    };
+
+    const url = `${API.OrderItems}/${orderItem.id}`;
+    const requestOpt = helpers.requestOptions(requestBody, 'PATCH', token);
+    fetch(url, requestOpt)
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.statusCode === 200) {
+          setShowToastUpdate(true);
+          setShowModal(false);
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        } else {
+          setError(result);
+          setShowToast(true);
+        }
+      })
+      .catch((err) => {
+        setError(err);
+        if (err.message === 'Unexpected end of JSON input') {
+          alert('Menu is has been deleted by admin');
+          setTimeout(() => {
+            deleteOrder();
+          }, 1200);
+        }
+        setShowToast(true);
+      });
+  };
+
   return (
     <div className="d-flex flex-row justify-content-center align-items-center border my-2 rounded p-2" style={{ backgroundColor: '#fff' }}>
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
@@ -147,7 +151,7 @@ export default function OrderItemCard({ showButton, showCreateReview, orderItem 
         </p>
         <div className="row w-100" style={{ fontSize: '0.8em' }}>
           <div className="col-12">
-            <span className="fa fa-star checked" />
+            <span className="fa fa-star checked" style={{ color: '#FFD27D' }} />
             {' '}
             {orderItem.menu.rating}
           </div>
