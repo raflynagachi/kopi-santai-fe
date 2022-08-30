@@ -6,7 +6,7 @@ import Loading from '../Loading';
 import Toast from '../Toast';
 
 export default function FilterMenu({
-  queryParam, handleChangeQueryParam,
+  queryParam, handleChangeQueryParam, isAdmin,
 }) {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -16,7 +16,7 @@ export default function FilterMenu({
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    if (!helpers.isValidToken(token)) {
+    if (!helpers.isValidToken(token) && isAdmin) {
       alert('unauthorized');
       localStorage.setItem('token', '');
       navigate('/login');

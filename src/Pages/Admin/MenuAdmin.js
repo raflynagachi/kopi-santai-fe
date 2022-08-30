@@ -100,7 +100,11 @@ export default function MenuAdmin() {
       {loading && <Loading />}
       {!error && !loading && (
         <div>
-          <FilterMenu queryParam={queryParam} handleChangeQueryParam={handleChangeQueryParam} />
+          <FilterMenu
+            queryParam={queryParam}
+            handleChangeQueryParam={handleChangeQueryParam}
+            isAdmin
+          />
           <MenuTable menus={menus} />
         </div>
       )}
