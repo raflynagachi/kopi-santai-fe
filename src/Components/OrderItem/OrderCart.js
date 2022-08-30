@@ -53,7 +53,6 @@ export default function OrderCart({ total, handleSubmitOrder }) {
           setCoupons(result.data);
           setLoading(result.loading);
           setError(result.error);
-          setSelectedCoupon(0);
         } else {
           setError(result);
           setShowToast(true);
@@ -98,6 +97,7 @@ export default function OrderCart({ total, handleSubmitOrder }) {
             <div className="form-group">
               Coupons
               <select className="form-select" id="couponID" onChange={(e) => setSelectedCoupon(e.target.selectedIndex)}>
+                <option value={null}>No coupon selected</option>
                 { coupons && coupons.map((item) => (
                   <option value={item.id}>
                     {item.name}
