@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import jwt from 'jwt-decode';
 import format from '../../Utils/Format';
 import { API, helpers } from '../../Utils/API';
 import Toast from '../Toast';
@@ -28,7 +29,9 @@ export default function OrderItemCompletedCard({ orderItem }) {
       navigate('/login');
     }
 
+    const userid = jwt(token).user.id;
     const requestBody = {
+      userID: parseInt(userid, 10),
       menuID: parseInt(dataForm.menuID.value, 10),
       rating: parseFloat(dataForm.rating.value),
       description: dataForm.description.value,
