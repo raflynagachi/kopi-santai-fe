@@ -1,5 +1,4 @@
 export default function ReviewTable({ reviews }) {
-  console.log(reviews);
   return (
     <div className="container">
       <table className="table table-bordered">

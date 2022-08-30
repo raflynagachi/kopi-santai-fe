@@ -16,7 +16,6 @@ export default function OrderCart({ total, handleSubmitOrder }) {
   const [selectedCouponID, setSelectedCouponID] = useState(0);
   const token = localStorage.getItem('token');
 
-  console.log(selectedCouponID);
   useEffect(() => {
     if (!helpers.isValidToken(token)) {
       alert('unauthorized');
