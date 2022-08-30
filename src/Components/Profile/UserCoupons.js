@@ -19,7 +19,7 @@ export default function UserCoupons({ coupons }) {
               <td>{c.name}</td>
               <td>{`${c.amount}%`}</td>
             </tr>
-          )) : <tr>No Coupons</tr>
+          )) : <tr><td colSpan={3} className="text-center">No Coupons</td></tr>
       }
         </tbody>
       </table>

@@ -39,7 +39,7 @@ export default function PromotionTable({ promotions }) {
             : (
               <tbody>
                 <tr>
-                  <td colSpan={8}>No promotions</td>
+                  <td colSpan={8} className="text-center">No promotions</td>
                 </tr>
               </tbody>
             )
