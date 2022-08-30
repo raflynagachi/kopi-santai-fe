@@ -1,20 +1,39 @@
-import bg1 from '../../Assets/bg1.jpg';
-import bg2 from '../../Assets/bg2.jpg';
-import bg3 from '../../Assets/bg3.jpg';
-
-export default function CarouselHome() {
+export default function CarouselHome({ promotions, images }) {
   return (
     <div id="carouselCtrl" className="carousel slide" data-bs-ride="carousel">
       <div className="carousel-inner">
-        <div className="carousel-item active">
-          <img src={bg1} style={{ objectFit: 'cover', width: '100%', height: '400px' }} className="d-block w-100" alt="bg1" />
-        </div>
-        <div className="carousel-item">
-          <img src={bg2} style={{ objectFit: 'cover', width: '100%', height: '400px' }} className="d-block w-100" alt="bg2" />
-        </div>
-        <div className="carousel-item">
-          <img src={bg3} style={{ objectFit: 'cover', width: '100%', height: '400px' }} className="d-block w-100" alt="bg3" />
-        </div>
+        {
+          promotions
+          && promotions.map((item, idx) => (
+            <div key={item} className={idx === 0 ? 'carousel-item active' : 'carousel-item'}>
+              <img
+                src={item.image}
+                style={{
+                  objectFit: 'cover',
+                  width: '100%',
+                  height: '200px',
+                }}
+                className="d-block w-100"
+                alt={item.name}
+              />
+              <div className="carousel-caption d-none d-md-block">
+                <h5>{item.name}</h5>
+                <p>{item.description}</p>
+                <p>{`${item.minSpent} to get ${item.coupon.name} coupon with discount up to ${item.coupon.amount}`}</p>
+              </div>
+            </div>
+          ))
+        }
+        {' '}
+        {images && images.map((item, idx) => (
+          <div key={item} className={idx === 0 ? 'carousel-item active' : 'carousel-item'}>
+            <img src={item} style={{ objectFit: 'cover', width: '100%', height: '400px' }} className="d-block w-100" alt="home hero" />
+            <div className="carousel-caption d-none d-md-block" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+              <h3>Welcome to Kopi Santai</h3>
+              <h4>Always be Happy ygy</h4>
+            </div>
+          </div>
+        ))}
       </div>
       <button
         className="carousel-control-prev"
