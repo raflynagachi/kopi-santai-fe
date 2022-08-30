@@ -13,9 +13,10 @@ export default function OrderCart({ total, handleSubmitOrder }) {
   const [showToast, setShowToast] = useState(false);
   const [paymentOpts, setPaymentOpts] = useState([]);
   const [coupons, setCoupons] = useState([]);
-  const [selectedCoupon, setSelectedCoupon] = useState(null);
+  const [selectedCouponID, setSelectedCouponID] = useState(0);
   const token = localStorage.getItem('token');
 
+  console.log(selectedCouponID);
   useEffect(() => {
     if (!helpers.isValidToken(token)) {
       alert('unauthorized');
@@ -82,7 +83,7 @@ export default function OrderCart({ total, handleSubmitOrder }) {
             <br />
             <div className="form-group">
               Total price
-              <input value={`${format.priceFormatter(selectedCoupon !== null ? (total - (total * coupons[selectedCoupon].amount) / 100) : total)}`} type="text" className="form-control" id="total" style={{ backgroundColor: '#ccc' }} readOnly />
+              <input value={`${format.priceFormatter(selectedCouponID > 0 ? (total - (total * coupons[selectedCouponID - 1].amount) / 100) : total)}`} type="text" className="form-control" id="total" style={{ backgroundColor: '#ccc' }} readOnly />
             </div>
             <br />
             <div className="form-group">
@@ -96,8 +97,8 @@ export default function OrderCart({ total, handleSubmitOrder }) {
             <br />
             <div className="form-group">
               Coupons
-              <select className="form-select" id="couponID" onChange={(e) => setSelectedCoupon(e.target.selectedIndex)}>
-                <option value={null}>No coupon selected</option>
+              <select className="form-select" id="couponID" onChange={(e) => setSelectedCouponID(e.target.selectedIndex)}>
+                <option value={0}>No coupon selected</option>
                 { coupons && coupons.map((item) => (
                   <option value={item.id}>
                     {item.name}
