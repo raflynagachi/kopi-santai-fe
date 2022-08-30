@@ -31,7 +31,7 @@ export default function CouponTable({ coupons }) {
   return (
     <div className="container">
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
-      <Toast show={showToastDeleteSuccess} setShow={setShowToastDeleteSuccess} message="Menu deleted successfully" />
+      <Toast show={showToastDeleteSuccess} setShow={setShowToastDeleteSuccess} message="Coupon deleted successfully" />
       <table className="table table-bordered">
         <thead className="text-center bg-info">
           <tr>
