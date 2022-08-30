@@ -2,7 +2,7 @@ import FormWrapper from '../Form/FormWrapper';
 
 export default function CouponCreateForm({ handleSubmit }) {
   return (
-    <FormWrapper title="Edit Profile">
+    <FormWrapper title="Create Coupon">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           Name

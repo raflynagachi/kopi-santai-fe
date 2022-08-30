@@ -88,7 +88,7 @@ export default function OrderCart({ total, handleSubmitOrder }) {
             <br />
             <div className="form-group">
               Payment options
-              <select className="form-select" id="paymentOptID">
+              <select className="form-select" id="paymentOptID" required>
                 {paymentOpts && paymentOpts.map((item) => (
                   <option value={item.id}>{item.name}</option>
                 ))}

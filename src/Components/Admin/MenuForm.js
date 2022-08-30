@@ -55,7 +55,7 @@ export default function MenuForm({ menu, handleSubmit }) {
           <br />
           <div className="form-group">
             Category
-            <select className="form-select" id="categoryID" defaultValue={menu && menu.categoryID}>
+            <select className="form-select" id="categoryID" defaultValue={menu && menu.categoryID} required>
               {categories.map((item) => (
                 <option key={item.id} value={item.id}>{item.name}</option>
               ))}

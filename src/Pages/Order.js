@@ -57,7 +57,7 @@ export default function Order() {
       // filteredOrders.forEach((item) => setFilteredOrders(
       //   FilterTheOrders.searchByText(item, filter),
       // ));
-      // setFilteredOrders(FilterTheOrders.filterShowBy(filteredOrders, filter));
+      setFilteredOrders(FilterTheOrders.filterShowBy(filteredOrders, filter));
     }
   }, [filter, orders]);
 

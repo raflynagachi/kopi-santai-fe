@@ -4,7 +4,7 @@ export default function DeliveryForm({ delivery, handleSubmit }) {
   const statusOptions = ['ON PROCESS', 'ON DELIVERY', 'DELIVERED'];
 
   return (
-    <FormWrapper title="Edit Profile">
+    <FormWrapper title="Edit Delivery">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <input value={delivery.id} type="text" className="form-control" id="id" readOnly />
