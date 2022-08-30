@@ -25,7 +25,7 @@ export default function PromotionTable({ promotions }) {
                   <td>{item.name}</td>
                   <td>{item.description}</td>
                   <td><img style={{ width: '100px', height: '100px' }} src={format.displayByteImage(item.image)} alt="promo" /></td>
-                  <td>{item.minSpent}</td>
+                  <td>{format.priceFormatter(item.minSpent)}</td>
                   <td>{item.coupon.name}</td>
                   <td>{`${item.coupon.amount}%`}</td>
                   {
