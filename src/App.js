@@ -15,6 +15,7 @@ import Dashboard from './Pages/Admin/Dashboard';
 import MenuAdmin from './Pages/Admin/MenuAdmin';
 import CouponAdmin from './Pages/Admin/CouponAdmin';
 import Promotion from './Pages/Admin/Promotion';
+import ReviewAdmin from './Pages/Admin/ReviewAdmin';
 
 function App() {
   return (
@@ -71,6 +72,10 @@ function App() {
         <Route
           path="menu"
           element={<MenuAdmin />}
+        />
+        <Route
+          path="menu/:id/review"
+          element={<ReviewAdmin />}
         />
         <Route
           path="coupon"

@@ -21,6 +21,10 @@ export default function MenuTable({ menus }) {
     setMenu(m);
   };
 
+  const viewReviews = (m) => {
+    navigate(`/internal/menu/${m.id}/review`);
+  };
+
   const deleteMenu = (menuID) => {
     const url = `${API.Menus}/${menuID}`;
     const requestOpt = helpers.requestOptions(null, 'DELETE', token);
@@ -125,7 +129,7 @@ export default function MenuTable({ menus }) {
                     )
                   }
                   <div>
-                    <button type="button" className="btn m-1 p-1" style={{ backgroundColor: '#ccc', width: '6em' }}>Reviews</button>
+                    <button type="button" className="btn m-1 p-1" style={{ backgroundColor: '#ccc', width: '6em' }} onClick={() => { viewReviews(item); }}>Reviews</button>
                   </div>
                 </td>
               </tr>
