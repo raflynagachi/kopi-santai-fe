@@ -20,8 +20,9 @@ export default function Promotion() {
       navigate('/login');
     }
 
-    const url = `${API.Promotions}`;
-    fetch(url)
+    const url = `${API.InternalPromotions}`;
+    const reqBody = { headers: { Authorization: `Bearer ${token}` } };
+    fetch(url, reqBody)
       .then((res) => res.json())
       .then((result) => {
         if (result.statusCode === 200) {
