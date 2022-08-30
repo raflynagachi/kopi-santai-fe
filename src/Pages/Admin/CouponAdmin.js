@@ -5,6 +5,7 @@ import Toast from '../../Components/Toast';
 import Loading from '../../Components/Loading';
 import Modal from '../../Components/Modal';
 import CouponTable from '../../Components/Admin/CouponTable';
+import CouponCreateForm from '../../Components/Admin/CouponCreateForm';
 
 export default function CouponAdmin() {
   const navigate = useNavigate();
@@ -61,7 +62,8 @@ export default function CouponAdmin() {
     }
 
     const requestBody = {
-      status: dataForm.status.value,
+      name: dataForm.name.value,
+      amount: parseFloat(dataForm.amount.value),
     };
 
     const url = `${API.Coupons}`;
@@ -86,8 +88,8 @@ export default function CouponAdmin() {
   return (
     <div className="container my-2">
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
-      <Toast show={showToastCreateSuccess} setShow={setShowToastCreateSuccess} message="Menu created successfully" />
-      {showModal && <Modal show={showModal} setShow={setShowModal} title="Create Coupon">Halo</Modal>}
+      <Toast show={showToastCreateSuccess} setShow={setShowToastCreateSuccess} message="Coupon created successfully" />
+      {showModal && <Modal show={showModal} setShow={setShowModal} title="Create Coupon"><CouponCreateForm handleSubmit={handleSubmitCreateCoupon} /></Modal>}
       <h4 className="text-center">Coupons Management</h4>
       <div className="d-flex justify-content-end">
         <button type="button" className="btn m-2" style={{ backgroundColor: '#afffaf' }} onClick={() => { createCoupon(); }}>Create Coupon</button>
