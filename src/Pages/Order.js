@@ -79,7 +79,7 @@ export default function Order() {
         {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
         {!error && !loading
           && (
-            <div className="d-flex flex-column w-100">
+            <div className="d-flex flex-column w-75">
               <FilterOrder filter={filter} handleChange={handleChange} />
               <OrderList orders={filteredOrders} />
             </div>

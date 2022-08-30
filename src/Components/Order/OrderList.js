@@ -2,7 +2,7 @@ import OrderCard from './OrderCard';
 
 export default function OrderList({ orders }) {
   return (
-    <div className="list-group w-100">
+    <div className="list-group">
       {
         orders && orders.length !== 0
           ? orders.map((item) => (

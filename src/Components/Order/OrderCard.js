@@ -1,36 +1,63 @@
-import OrderItemCard from '../OrderItem/OrderItemCard';
 import format from '../../Utils/Format';
+import OrderItemCompletedCard from '../OrderItem/OrderItemCompletedCard';
 
 export default function OrderCard({ order }) {
   return (
-    <div className="d-flex flex-row justify-content-center align-items-center border my-2 rounded p-2" style={{ backgroundColor: '#eee' }}>
-      <div className="d-flex flex-column pt-4 w-100">
-        <h5 style={{ fontSize: '0.9em' }} className="card-title">{`Ordered Date: ${format.formatDate(order.orderedDate)}`}</h5>
-        {order.coupon
-        && (
-        <p style={{ fontSize: '0.75em' }} className="col-6">
-          {`Coupon: ${order.coupon.name} in percentage amount is ${order.coupon.amount}%`}
-        </p>
-        )}
-        <div className="row w-100 d-flex justify-content-center" style={{ fontSize: '0.8em' }}>
-          <div className="col-12">
-            {`Delivery Status: ${order.delivery.status}`}
-          </div>
-          <div className="col-12">
-            {`Payment Option: ${order.paymentOption.name}`}
-          </div>
-          <div className="col-12">
-            {`Total Price: ${format.priceFormatter(order.totalPrice)}`}
-          </div>
-          <div className="col-10 text-start">
-            <div className="justify-content-center">
-              {
+    <div className="border my-2 rounded p-2 mx-auto w-75" style={{ backgroundColor: '#eee' }}>
+      <div className="d-flex flex-row pt-4">
+        <div className="col-4">
+          <h5 style={{ fontSize: '0.9em' }}>{'Ordered Date: '}</h5>
+          <table className="table mx-2">
+            <tbody>
+              <tr>
+                <td>Ordered Date</td>
+                <td>{format.formatDate(order.orderedDate)}</td>
+              </tr>
+              <tr>
+                <td>Coupon</td>
+                <td>
+                  {order.coupon
+                    ? (
+                      <p style={{ fontSize: '0.75em' }}>
+                        {`Coupon: ${order.coupon.name} in percentage amount is ${order.coupon.amount}%`}
+                      </p>
+                    )
+                    : <p>No coupon</p>}
+                </td>
+              </tr>
+              <tr>
+                <td>Delivery Status</td>
+                <td>{order.delivery.status}</td>
+              </tr>
+              <tr>
+                <td>Payment Option</td>
+                <td>{order.paymentOption.name}</td>
+              </tr>
+              <tr>
+                <td>Total Price</td>
+                <td>
+                  {
+                    order.coupon
+                    && (
+                    <p style={{ textDecoration: 'line-through' }}>
+                      {format.priceFormatter(
+                        (order.totalPrice * 100) / (100 - order.coupon.amount),
+                      )}
+                    </p>
+                    )
+                  }
+                  {format.priceFormatter(order.totalPrice)}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div className="w-100" style={{ fontSize: '0.8em' }}>
+          {
                 order.orderItems && order.orderItems.map((item) => (
-                  <OrderItemCard showCreateReview orderItem={item} />
+                  <OrderItemCompletedCard orderItem={item} />
                 ))
               }
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -97,7 +97,7 @@ export default function OrderCart({ total, handleSubmitOrder }) {
             <div className="form-group">
               Coupons
               <select className="form-select" id="couponID" onChange={(e) => setSelectedCouponID(e.target.selectedIndex)}>
-                <option value={0}>No coupon selected</option>
+                <option value={null}>No coupon selected</option>
                 { coupons && coupons.map((item) => (
                   <option value={item.id}>
                     {item.name}
