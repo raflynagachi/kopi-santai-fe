@@ -13,7 +13,7 @@ export default function ReviewForm({ menuItem, handleSubmit }) {
         <div className="form-group">
           Rating
           <div className="d-flex flex-row align-items-center">
-            <input defaultValue={5} type="number" className="form-control" id="rating" min={1} max={5} />
+            <input defaultValue={5} type="number" step={0.01} className="form-control" id="rating" min={1} max={5} />
           </div>
         </div>
         <br />
