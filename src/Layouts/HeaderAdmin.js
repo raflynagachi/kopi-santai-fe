@@ -54,8 +54,13 @@ export default function HeaderAdmin() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink data-testid="navlink-menu" to="/internal/coupon">
+                <NavLink data-testid="navlink-coupon" to="/internal/coupon">
                   Coupon
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink data-testid="navlink-promotion" to="/internal/promotion">
+                  Promotion
                 </NavLink>
               </li>
               |

@@ -14,6 +14,7 @@ import Games from './Pages/Games';
 import Dashboard from './Pages/Admin/Dashboard';
 import MenuAdmin from './Pages/Admin/MenuAdmin';
 import CouponAdmin from './Pages/Admin/CouponAdmin';
+import Promotion from './Pages/Admin/Promotion';
 
 function App() {
   return (
@@ -74,6 +75,10 @@ function App() {
         <Route
           path="coupon"
           element={<CouponAdmin />}
+        />
+        <Route
+          path="promotion"
+          element={<Promotion />}
         />
       </Route>
       <Route
