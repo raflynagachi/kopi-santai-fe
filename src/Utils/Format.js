@@ -3,7 +3,7 @@ const format = {
     `data:image/jpeg;base64,${image}`
   ),
   formatDate: (date) => (
-    new Date(date).toUTCString()
+    new Date(date).toLocaleString()
   ),
   priceFormatter: (number) => {
     const formatter = new Intl.NumberFormat('ID', {
