@@ -14,6 +14,7 @@ export default function PromotionTable({ promotions }) {
             <td>Coupon</td>
             <td>Discount Amount</td>
             <td>Is Available</td>
+            <td>Action</td>
           </tr>
         </thead>
         {
@@ -33,13 +34,19 @@ export default function PromotionTable({ promotions }) {
                     ? <td style={{ backgroundColor: '#ddd' }}>Non-Active</td>
                     : <td>Active</td>
                 }
+                  <td>
+                    {
+                      !item.coupon.deletedAt
+                      && <button type="button" className="btn mx-1 p-1" style={{ backgroundColor: '#ff6e6e', width: '6em' }}>Delete</button>
+                    }
+                  </td>
                 </tr>
               </tbody>
             ))
             : (
               <tbody>
                 <tr>
-                  <td colSpan={8} className="text-center">No promotions</td>
+                  <td colSpan={9} className="text-center">No promotions</td>
                 </tr>
               </tbody>
             )
