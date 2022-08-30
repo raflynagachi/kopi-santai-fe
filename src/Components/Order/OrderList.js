@@ -4,11 +4,11 @@ export default function OrderList({ orders }) {
   return (
     <div className="list-group w-100">
       {
-        orders
+        orders && orders.length !== 0
           ? orders.map((item) => (
             <OrderCard className="list-group-item" order={item} />
           ))
-          : <div className="list-group-item">Orders is empty</div>
+          : <div className="list-group-item text-center">Orders is empty</div>
       }
     </div>
   );

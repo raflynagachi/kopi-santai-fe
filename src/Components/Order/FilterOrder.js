@@ -50,7 +50,7 @@ export default function FilterOrder({ filter, handleChange }) {
         !error && !loading
         && (
         <div className="d-flex flex-row align-items-center justify-content-around mb-2">
-          <p className="my-0 me-4">Show</p>
+          <p className="my-0 me-2">Show</p>
           <select
             className="form-select"
             aria-label="Default select example"
@@ -66,7 +66,7 @@ export default function FilterOrder({ filter, handleChange }) {
         </div>
         )
       }
-      <div className="d-flex flex-row align-items-center justify-content-around">
+      <div className="d-flex flex-row align-items-center justify-content-around mb-2">
         <p className="my-0 me-2" style={{ whiteSpace: 'nowrap' }}>Sort by</p>
         <select
           className="form-select mx-2"

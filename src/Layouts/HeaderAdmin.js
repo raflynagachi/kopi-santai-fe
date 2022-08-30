@@ -27,7 +27,7 @@ export default function HeaderAdmin() {
     <header>
       <nav className="navbar navbar-expand-md navbar-light">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand" to="/internal/">
             <h3 className="text-logo">Kopi Santai (ADMIN)</h3>
           </Link>
           <button
