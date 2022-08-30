@@ -8,7 +8,7 @@ export default function OrderList({ orders }) {
           ? orders.map((item) => (
             <OrderCard className="list-group-item" order={item} />
           ))
-          : <div className="list-group-item">Order Items or Cart is empty</div>
+          : <div className="list-group-item">Orders is empty</div>
       }
     </div>
   );

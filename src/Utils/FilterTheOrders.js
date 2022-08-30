@@ -16,18 +16,18 @@ export default {
     }
     return orders;
   },
-  searchByText: (order, filter) => {
-    if (filter.keyword === '') return order;
+  searchByText: (orders, filter) => {
+    if (filter.keyword === '') return orders;
     const regex = new RegExp(filter.keyword, 'gi');
-    return order.orderItems.filter((menuItem) => (
-      menuItem.menu.name.match(regex)
-    ));
+    return orders.filter((trx) => trx.orderItems.some((orderItem) => (
+      orderItem.menu.name.match(regex)
+    )));
   },
   filterShowBy: (orders, filter) => {
     if (filter.showBy === '') return orders;
-    const regex = new RegExp(filter.showBy, 'gi');
-    return orders.filter((trx) => trx.orderItems.filter((menuItem) => (
-      menuItem.menu.categoryName.match(regex)
+    const regex = new RegExp(`^${filter.showBy}$`, 'gi');
+    return orders.filter((trx) => trx.orderItems.some((orderItem) => (
+      orderItem.menu.categoryName.match(regex)
     )));
   },
 };

@@ -57,7 +57,6 @@ export default function FilterOrder({ filter, handleChange }) {
             id="showBy"
             value={filter.showBy}
             onChange={handleChange}
-            disabled
           >
             <option value="">All</option>
             {categories && categories.map((item) => (
@@ -90,7 +89,7 @@ export default function FilterOrder({ filter, handleChange }) {
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
         </select>
-        <input type="text" className="form-control" id="keyword" onChange={handleChange} placeholder="type a keyword..." disabled />
+        <input type="text" className="form-control" id="keyword" onChange={handleChange} placeholder="type a keyword..." />
       </div>
     </div>
   );

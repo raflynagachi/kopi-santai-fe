@@ -34,7 +34,6 @@ export default function Order() {
           setFilter({
             sortBy: 'id', sort: 'desc', keyword: '', showBy: '',
           });
-          setFilteredOrders(result.data);
           setLoading(result.loading);
           setError(result.error);
         } else {
@@ -52,12 +51,12 @@ export default function Order() {
   }, []);
 
   useEffect(() => {
-    if (orders !== null) {
-      setFilteredOrders(FilterTheOrders.sortOrderBy(filteredOrders, filter));
-      // filteredOrders.forEach((item) => setFilteredOrders(
-      //   FilterTheOrders.searchByText(item, filter),
-      // ));
-      setFilteredOrders(FilterTheOrders.filterShowBy(filteredOrders, filter));
+    if (orders !== null && !loading) {
+      let fOrders;
+      fOrders = FilterTheOrders.sortOrderBy(orders, filter);
+      fOrders = FilterTheOrders.filterShowBy(fOrders, filter);
+      fOrders = FilterTheOrders.searchByText(fOrders, filter);
+      setFilteredOrders(fOrders);
     }
   }, [filter, orders]);
 
@@ -78,7 +77,7 @@ export default function Order() {
         <h3 className="mt-4 text-center">Order History</h3>
         {loading && <Loading />}
         {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
-        {!error && !loading && orders && filteredOrders
+        {!error && !loading
           && (
             <div className="d-flex flex-column">
               <FilterOrder filter={filter} handleChange={handleChange} />
