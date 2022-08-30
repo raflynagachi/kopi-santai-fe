@@ -21,7 +21,8 @@ export default function MenuAdmin() {
   const [queryParam, setQueryParam] = useState({});
   const token = localStorage.getItem('token');
 
-  const menuRes = useFetch(API.InternalMenus + helpers.queryParamMenuToString(queryParam));
+  const reqBody = { headers: { Authorization: `Bearer ${token}` } };
+  const menuRes = useFetch(API.InternalMenus + helpers.queryParamMenuToString(queryParam), reqBody);
 
   const createMenu = () => {
     setShowModalCreateMenu(true);
