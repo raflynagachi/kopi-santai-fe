@@ -41,7 +41,7 @@ export default function Register() {
   };
 
   return (
-    <>
+    <div className="container-fluid justify-content-center" style={{ maxWidth: '500px' }}>
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
       <FormWrapper title="Register">
         <form onSubmit={handleSubmitRegister}>
@@ -53,6 +53,6 @@ export default function Register() {
           <button type="submit" className="btn btn-primary w-100 my-2">Register</button>
         </form>
       </FormWrapper>
-    </>
+    </div>
   );
 }

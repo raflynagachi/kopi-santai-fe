@@ -38,7 +38,7 @@ export default function Login() {
   };
 
   return (
-    <>
+    <div className="container-fluid justify-content-center" style={{ maxWidth: '500px' }}>
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
       <FormWrapper title="Login">
         <form onSubmit={handleSubmitLogin}>
@@ -51,6 +51,6 @@ export default function Login() {
           <Link style={{ textDecoration: 'none' }} to="/register"> Register</Link>
         </p>
       </FormWrapper>
-    </>
+    </div>
   );
 }
