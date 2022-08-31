@@ -22,8 +22,6 @@ export default function Home() {
       .then((result) => {
         if (result.statusCode === 200) {
           setPromotions(result.data);
-          setLoading(result.loading);
-          setError(result.error);
         } else {
           setError(result);
           setShowToast(true);

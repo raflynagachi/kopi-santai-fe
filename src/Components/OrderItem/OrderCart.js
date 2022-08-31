@@ -30,8 +30,6 @@ export default function OrderCart({ total, handleSubmitOrder }) {
       .then((result) => {
         if (result.statusCode === 200) {
           setPaymentOpts(result.data);
-          setLoading(result.loading);
-          setError(result.error);
         } else {
           setError(result);
           setShowToast(true);
@@ -51,8 +49,6 @@ export default function OrderCart({ total, handleSubmitOrder }) {
       .then((result) => {
         if (result.statusCode === 200) {
           setCoupons(result.data);
-          setLoading(result.loading);
-          setError(result.error);
         } else {
           setError(result);
           setShowToast(true);

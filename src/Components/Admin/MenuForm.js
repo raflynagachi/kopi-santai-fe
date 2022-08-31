@@ -27,8 +27,6 @@ export default function MenuForm({ menu, handleSubmit }) {
       .then((result) => {
         if (result.statusCode === 200) {
           setCategories(result.data);
-          setLoading(result.loading);
-          setError(result.error);
         } else {
           setError(result);
           setShowToast(true);

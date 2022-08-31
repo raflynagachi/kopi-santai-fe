@@ -34,8 +34,6 @@ export default function Order() {
           setFilter({
             sortBy: 'id', sort: 'desc', keyword: '', showBy: '',
           });
-          setLoading(result.loading);
-          setError(result.error);
         } else {
           setError(result);
           setShowToast(true);

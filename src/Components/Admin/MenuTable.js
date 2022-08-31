@@ -35,7 +35,7 @@ export default function MenuTable({ menus }) {
           setShowToastDeleteSuccess(true);
           setTimeout(() => { window.location.reload(); }, 1200);
         } else {
-          setError(result.data);
+          setError(result);
           setShowToast(error);
         }
       })
@@ -79,7 +79,7 @@ export default function MenuTable({ menus }) {
           setShowToastEditSuccess(true);
           setTimeout(() => { window.location.reload(); }, 1200);
         } else {
-          setError(result.data);
+          setError(result);
           setShowToast(error);
         }
       })

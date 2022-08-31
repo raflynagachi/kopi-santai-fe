@@ -30,8 +30,6 @@ export default function OrderItem() {
       .then((result) => {
         if (result.statusCode === 200) {
           setOrderItems(result.data);
-          setLoading(result.loading);
-          setError(result.error);
         } else {
           setError(result);
           setShowToast(true);

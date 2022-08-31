@@ -18,7 +18,7 @@ export default function CouponTable({ coupons }) {
           setShowToastDeleteSuccess(true);
           setTimeout(() => { window.location.reload(); }, 1200);
         } else {
-          setError(result.data);
+          setError(result);
           setShowToast(error);
         }
       })

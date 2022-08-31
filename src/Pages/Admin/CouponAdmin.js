@@ -35,8 +35,6 @@ export default function CouponAdmin() {
       .then((result) => {
         if (result.statusCode === 200) {
           setCoupons(result.data);
-          setLoading(result.loading);
-          setError(result.error);
         } else {
           setError(result);
           setShowToast(true);
@@ -77,6 +75,9 @@ export default function CouponAdmin() {
           setTimeout(() => {
             window.location.reload();
           }, 1200);
+        } else {
+          setError(result);
+          setShowToast(true);
         }
       })
       .catch((err) => {
@@ -96,7 +97,7 @@ export default function CouponAdmin() {
       </div>
       <hr className="my-5" />
       {loading && <Loading />}
-      {!error && !loading && (
+      {!loading && (
       <CouponTable coupons={coupons} />
       )}
     </div>

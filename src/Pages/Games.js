@@ -32,8 +32,6 @@ export default function Games() {
       .then((result) => {
         if (result.statusCode === 200) {
           setUserGame(result.data);
-          setLoading(result.loading);
-          setError(result.error);
           setUserID(jwt(token).user.id);
         } else {
           setError(result);
@@ -55,8 +53,6 @@ export default function Games() {
       .then((result) => {
         if (result.statusCode === 200) {
           setLeaderboard(result.data);
-          setLoading(result.loading);
-          setError(result.error);
         } else {
           setError(result);
           setShowToast(true);
