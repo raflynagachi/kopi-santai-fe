@@ -72,7 +72,7 @@ export default function Games() {
       {loading && <Loading />}
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
       <div className="row text-center">
-        <div className="col-8 bg-warning">
+        <div className="col-8">
           <Gameplay />
         </div>
         <div className="col-4">

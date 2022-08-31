@@ -43,3 +43,5 @@ API.Promotions = `${baseUrl}/promotions`;
 API.Deliveries = `${baseUrl}/deliveries`;
 API.PaymentOpt = `${baseUrl}/payment-options`;
 API.Categories = `${baseUrl}/categories`;
+
+API.RandomQuiz = 'https://the-trivia-api.com/api/questions?limit=1&difficulty=easy';
