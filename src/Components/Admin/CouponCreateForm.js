@@ -11,7 +11,7 @@ export default function CouponCreateForm({ handleSubmit }) {
         <br />
         <div className="form-group">
           Amount
-          <input defaultValue={0} type="number" step={0.01} className="form-control" id="amount" required min={0} />
+          <input defaultValue={0} type="number" step={0.01} className="form-control" id="amount" required min={1} max={100} />
         </div>
         <br />
         <button type="submit">Submit</button>

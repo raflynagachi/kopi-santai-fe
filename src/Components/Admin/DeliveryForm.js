@@ -7,7 +7,8 @@ export default function DeliveryForm({ delivery, handleSubmit }) {
     <FormWrapper title="Edit Delivery">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <input value={delivery.id} type="text" className="form-control" id="id" readOnly />
+          Delivery ID
+          <input style={{ backgroundColor: '#ccc' }} value={delivery.id} type="text" className="form-control" id="id" readOnly />
         </div>
         <br />
         <div className="form-group">
