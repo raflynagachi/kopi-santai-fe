@@ -9,7 +9,9 @@ import Gameplay from '../Components/Games/Gameplay';
 
 export default function Games() {
   const navigate = useNavigate();
+  const MaxTried = 5;
   const [userGame, setUserGame] = useState({});
+  const [tried, setTried] = useState(0);
   const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -32,6 +34,7 @@ export default function Games() {
       .then((result) => {
         if (result.statusCode === 200) {
           setUserGame(result.data);
+          setTried(result.data.tried);
           setUserID(jwt(token).user.id);
         } else {
           setError(result);
@@ -73,7 +76,7 @@ export default function Games() {
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
       <div className="row text-center">
         <div className="col-8">
-          <Gameplay />
+          <Gameplay maxTried={MaxTried} tried={tried} setTried={setTried} />
         </div>
         <div className="col-4">
           <div className="mb-4 p-2 border rounded" style={{ backgroundColor: '#bdffbd' }}>

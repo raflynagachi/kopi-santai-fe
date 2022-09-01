@@ -4,7 +4,7 @@ import Loading from '../Loading';
 import Toast from '../Toast';
 import QuizDisplay from './QuizDisplay';
 
-export default function Gameplay() {
+export default function Gameplay({ maxTried, tried, setTried }) {
   const [quiz, setQuiz] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -32,12 +32,13 @@ export default function Gameplay() {
     <div className="container p-4">
       {loading && <Loading />}
       <h4 className="text-center">{'Let\'s play the games'}</h4>
+      <p className="mt-2">{`Try chance ${tried}/${maxTried}`}</p>
       <hr className="my-2" />
-      <button type="button" className="btn mx-1 p-1" style={{ backgroundColor: '#fff985', width: '6em' }} onClick={() => { playGame(); }}> PLAY </button>
+      <button type="button" className="btn mx-1 p-1" style={{ backgroundColor: tried < maxTried ? '#fff985' : '#ccc', width: '6em' }} onClick={tried < maxTried ? () => { playGame(); } : undefined}> PLAY </button>
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
       {
         !loading && showQuiz
-        && <QuizDisplay quiz={quiz} />
+        && <QuizDisplay setTried={setTried} quiz={quiz} />
       }
     </div>
   );
