@@ -13,6 +13,7 @@ export default function OrderCart({ total, handleSubmitOrder }) {
   const [showToast, setShowToast] = useState(false);
   const [paymentOpts, setPaymentOpts] = useState([]);
   const [coupons, setCoupons] = useState([]);
+  const [showToastDeleteAll, setShowToastDeleteAll] = useState(false);
   const [selectedCouponID, setSelectedCouponID] = useState(0);
   const token = localStorage.getItem('token');
 
@@ -63,10 +64,40 @@ export default function OrderCart({ total, handleSubmitOrder }) {
       });
   }, []);
 
+  const deleteOrders = () => {
+    if (!helpers.isValidToken(token)) {
+      alert('unauthorized');
+      localStorage.setItem('token', '');
+      navigate('/login');
+    }
+
+    const url = `${API.OrderItems}`;
+    const requestOpt = helpers.requestOptions(null, 'DELETE', token);
+    fetch(url, requestOpt)
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.statusCode === 200) {
+          setShowToastDeleteAll(true);
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        } else {
+          setError(result);
+          setShowToast(true);
+        }
+      })
+      .catch((err) => {
+        setError(err);
+        setShowToast(true);
+      });
+  };
+
   return (
     <div className="container border m-2 py-4">
       {loading && <Loading />}
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
+      <Toast show={showToastDeleteAll} setShow={setShowToastDeleteAll} message="order items deleted successfully" />
+      <button type="button" className="bg-danger btn text-white" onClick={deleteOrders}>Delete all</button>
       {!error && !loading
         && (
         <FormWrapper title="OrderCart - Checkout">
