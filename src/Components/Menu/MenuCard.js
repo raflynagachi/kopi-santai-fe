@@ -21,7 +21,7 @@ export default function MenuCard({ menuItem }) {
             {` ${format.priceFormatter(menuItem.price)}`}
           </div>
         </div>
-        <Link to={`/menu/${menuItem.id}`}>See detail</Link>
+        <Link to={`/menu/${menuItem.id}`} className="w-100 btn mt-2 bg-info">See detail</Link>
       </div>
     </div>
   );
