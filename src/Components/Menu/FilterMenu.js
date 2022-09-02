@@ -67,7 +67,7 @@ export default function FilterMenu({
         </div>
         )
       }
-      <div className="d-flex flex-row align-items-center justify-content-around mb-2">
+      <div className="d-flex flex-row align-items-center mb-2">
         <p className="my-0 me-1" style={{ whiteSpace: 'nowrap' }}>Sort by</p>
         <select
           className="form-select me-2"
@@ -87,10 +87,12 @@ export default function FilterMenu({
           value={queryParam.sort}
           onChange={handleChangeQueryParam}
         >
-          <option value="asc">Ascending</option>
-          <option value="desc">Descending</option>
+          <option value="asc">ascending</option>
+          <option value="desc">descending</option>
         </select>
-        <input type="text" className="searchInput form-control" id="search" placeholder="type a keyword.." onChange={handleChangeQueryParam} />
+      </div>
+      <div className="d-flex flex-row mb-2">
+        <input type="text" className="searchInput form-control me-2" id="search" placeholder="type a keyword.." onChange={handleChangeQueryParam} />
       </div>
     </div>
   );
