@@ -71,14 +71,14 @@ export default function Games() {
   }, []);
 
   return (
-    <div className="container my-4">
-      {loading && <Loading />}
-      {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
-      <div className="row text-center">
-        <div className="col-8">
+    <div className="container">
+      <div className="row my-4">
+        {loading && <Loading />}
+        {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
+        <div className="col-sm-12 col-md-6 text-center">
           <Gameplay maxTried={MaxTried} tried={tried} setTried={setTried} />
         </div>
-        <div className="col-4">
+        <div className="col-sm-12 col-md-6">
           <div className="mb-4 p-2 border rounded" style={{ backgroundColor: '#bdffbd' }}>
             <h5 className="m-0">My Score</h5>
             <h4 className="m-0">{userGame.score}</h4>

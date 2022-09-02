@@ -3,10 +3,9 @@ import OrderItemCompletedCard from '../OrderItem/OrderItemCompletedCard';
 
 export default function OrderCard({ order }) {
   return (
-    <div className="border my-2 rounded p-2 mx-auto w-75" style={{ backgroundColor: '#eee' }}>
-      <div className="d-flex flex-row pt-4">
+    <div className="border my-2 rounded p-2 mx-auto" style={{ backgroundColor: '#eee', fontSize: '0.9em' }}>
+      <div className="row pt-4">
         <div className="col-4">
-          <h5 style={{ fontSize: '0.9em' }}>{'Ordered Date: '}</h5>
           <table className="table mx-2">
             <tbody>
               <tr>
@@ -52,7 +51,7 @@ export default function OrderCard({ order }) {
             </tbody>
           </table>
         </div>
-        <div className="w-100" style={{ fontSize: '0.8em' }}>
+        <div className="col" style={{ fontSize: '0.8em' }}>
           {
                 order.orderItems && order.orderItems.map((item) => (
                   <OrderItemCompletedCard orderItem={item} />

@@ -47,7 +47,7 @@ export default function FilterOrder({ filter, handleChange }) {
       {
         !error && !loading
         && (
-        <div className="d-flex flex-row align-items-center justify-content-around mb-2">
+        <div className="d-flex flex-row align-items-center justify-content-between mb-2">
           <p className="my-0 me-2">Show</p>
           <select
             className="form-select"
@@ -84,9 +84,11 @@ export default function FilterOrder({ filter, handleChange }) {
           value={filter.sort}
           onChange={handleChange}
         >
-          <option value="asc">Ascending</option>
-          <option value="desc">Descending</option>
+          <option value="asc">ascending</option>
+          <option value="desc">descending</option>
         </select>
+      </div>
+      <div className="d-flex flex-row mb-2">
         <input type="text" className="form-control" id="keyword" onChange={handleChange} placeholder="type a keyword..." />
       </div>
     </div>

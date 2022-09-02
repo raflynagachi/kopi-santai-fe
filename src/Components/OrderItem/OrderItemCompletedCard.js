@@ -60,30 +60,28 @@ export default function OrderItemCompletedCard({ orderItem }) {
   };
 
   return (
-    <div className="d-flex flex-row justify-content-center align-items-center border rounded my-2 mx-2 p-2" style={{ backgroundColor: '#fff' }}>
+    <div className="border rounded my-2 mx-2 p-2" style={{ backgroundColor: '#fff' }}>
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
       {showModalReview && <Modal show={showModalReview} setShow={setShowModalReview} title="Review Menu"><ReviewForm menuItem={orderItem.menu} handleSubmit={createReview} /></Modal>}
       <Toast show={showToastReview} setShow={setShowToastReview} message="Review created successfully" />
-      <div className="d-flex flex-column w-100">
-        <div className="d-flex align-items-start justify-content-between">
-          <div>
-            <h5 className="card-title">{orderItem.menu.name}</h5>
-            <p>
-              Category:
-              {orderItem.menu.categoryName}
-            </p>
-          </div>
-          <button type="button" className="btn px-2 py-0 bg-info" onClick={showReviewForm}>Add Review</button>
-        </div>
-        <div>
-          <p className="m-0">
-            {`${format.priceFormatter(orderItem.menu.price)}`}
-            {` x${orderItem.quantity}`}
-          </p>
-          <p className="m-0">
-            {`Description: ${orderItem.description}`}
+      <div className="row me-1">
+        <div className="col">
+          <h5 className="card-title">{orderItem.menu.name}</h5>
+          <p>
+            Category:
+            {orderItem.menu.categoryName}
           </p>
         </div>
+        <button type="button" style={{ maxWidth: '100px', maxHeight: '25px', fontSize: '0.8rem' }} className="btn col px-2 py-0 bg-info" onClick={showReviewForm}>Add Review</button>
+      </div>
+      <div style={{ wordWrap: 'break-word' }}>
+        <p className="m-0">
+          {`${format.priceFormatter(orderItem.menu.price)}`}
+          {` x${orderItem.quantity}`}
+        </p>
+        <p className="m-0">
+          {`Description: ${orderItem.description}`}
+        </p>
       </div>
     </div>
   );

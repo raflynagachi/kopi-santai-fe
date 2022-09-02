@@ -66,7 +66,7 @@ export default function QuizDisplay({ quiz }) {
       <h5>{quiz.question}</h5>
       <div className="row">
         {choices.map((item) => (
-          <div className="col col-lg-3">
+          <div className="col p-2">
             <button
               className="w-100 h-100 p-2"
               type="button"

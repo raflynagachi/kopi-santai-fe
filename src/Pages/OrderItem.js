@@ -98,9 +98,9 @@ export default function OrderItem() {
         <Toast show={showToastSuccess} setShow={setShowToastSuccess} message="order checkout success" />
         {!loading
         && (
-          <div className="d-flex flex-row">
-            <OrderItemList orderItems={orderItems} />
-            {total !== 0 && <OrderCart className="mx-2" total={total} handleSubmitOrder={handleSubmitOrder} />}
+          <div className="container row">
+            <div className="col-sm-12 col-md-6 col-lg-4"><OrderItemList orderItems={orderItems} /></div>
+            <div className="col">{total !== 0 && <OrderCart total={total} handleSubmitOrder={handleSubmitOrder} />}</div>
           </div>
         )}
       </div>

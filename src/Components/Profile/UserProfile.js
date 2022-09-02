@@ -61,32 +61,36 @@ export default function UserProfile({ data }) {
   };
 
   return (
-    <div className="d-flex flex-row justify-content-center align-items-center">
+    <div className="container">
       {showModal && <Modal show={showModal} setShow={setShowModal} title="Edit Profile"><EditFormProfile user={data.user} handleSubmitUserEdit={handleSubmitUserEdit} /></Modal>}
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
-      <img style={{ width: '200px', height: '200px' }} className="rounded-circle p-4" src={format.displayByteImage(data.user.profilePicture)} alt="profile" />
-      <div className="d-flex flex-column">
-        <table className="table">
-          <tbody>
-            <tr>
-              <th>Name</th>
-              <td>{data.user.fullName}</td>
-            </tr>
-            <tr>
-              <th>Phone</th>
-              <td>{data.user.phone}</td>
-            </tr>
-            <tr>
-              <th>Email</th>
-              <td>{data.user.email}</td>
-            </tr>
-            <tr>
-              <th>Address</th>
-              <td>{data.user.address}</td>
-            </tr>
-          </tbody>
-        </table>
-        <button type="button" onClick={editProfile}>Edit profile</button>
+      <div className="row">
+        <div className="col-sm-12 col-lg-4 d-flex justify-content-center">
+          <img style={{ width: '200px', height: '200px' }} className="rounded-circle p-4" src={format.displayByteImage(data.user.profilePicture)} alt="profile" />
+        </div>
+        <div className="col-sm-12 col-lg-8">
+          <table className="table">
+            <tbody>
+              <tr>
+                <th>Name</th>
+                <td>{data.user.fullName}</td>
+              </tr>
+              <tr>
+                <th>Phone</th>
+                <td>{data.user.phone}</td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <td>{data.user.email}</td>
+              </tr>
+              <tr>
+                <th>Address</th>
+                <td>{data.user.address}</td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="button" onClick={editProfile}>Edit profile</button>
+        </div>
       </div>
     </div>
   );
