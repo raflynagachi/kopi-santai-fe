@@ -5,7 +5,7 @@ export default function OrderCard({ order }) {
   return (
     <div className="border my-2 rounded p-2 mx-auto" style={{ backgroundColor: '#eee', fontSize: '0.9em' }}>
       <div className="row pt-4">
-        <div className="col-4">
+        <div className="col-sm-12 col-md-4">
           <table className="table mx-2">
             <tbody>
               <tr>
@@ -51,7 +51,7 @@ export default function OrderCard({ order }) {
             </tbody>
           </table>
         </div>
-        <div className="col" style={{ fontSize: '0.8em' }}>
+        <div className="col-sm-12 col-md-6" style={{ fontSize: '0.8em' }}>
           {
                 order.orderItems && order.orderItems.map((item) => (
                   <OrderItemCompletedCard orderItem={item} />

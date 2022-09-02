@@ -92,27 +92,26 @@ export default function MenuDetail() {
   };
 
   return (
-    <div>
+    <div className="my-4 mx-2">
       {loading && <Loading />}
       {!error && !loading && menuItem
         && (
           <div>
             {showModal && <Modal show={showModal} setShow={setShowModal} title="OrderCart Item"><OrderItemForm menuItem={menuItem} handleSubmit={handleSubmitOrderItem} /></Modal>}
-            <div className="card mx-auto mb-4" style={{ width: '24rem' }}>
+            <div className="card mx-auto mb-4" style={{ maxWidth: '18rem' }}>
               {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
               <Toast show={showToastSuccess} setShow={setShowToastSuccess} message="add order item success" />
-              <img className="card-img-top" style={{ height: '18rem' }} src={format.displayByteImage(menuItem.menu.image)} alt="Card menu" />
+              <img className="card-img-top" style={{ height: '16rem' }} src={format.displayByteImage(menuItem.menu.image)} alt="Card menu" />
               <div className="card-body">
                 <div className="row">
                   <div className="col-8">
                     <h5 style={{ fontSize: '0.9em' }} className="card-title">{menuItem.menu.name}</h5>
-                    <p style={{ fontSize: '0.75em' }} className="col-6">
-                      Category:
+                    <p style={{ fontSize: '0.75em' }} className="col-8">
                       {menuItem.menu.categoryName}
                     </p>
                   </div>
                   <div className="col-4 d-flex h-75 justify-content-end">
-                    <button type="button" style={{ fontSize: '0.8em', backgroundColor: '#ffd294' }} onClick={showOrderItem} className="w-100 rounded">OrderCart</button>
+                    <button type="button" style={{ fontSize: '0.8em', backgroundColor: '#ffd294' }} onClick={showOrderItem} className="w-100 rounded">Order</button>
                   </div>
                 </div>
                 <div className="card-text row">

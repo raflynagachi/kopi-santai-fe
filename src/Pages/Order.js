@@ -77,7 +77,7 @@ export default function Order() {
         {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
         {!error && !loading
           && (
-            <div className="container">
+            <div className="container col-sm-12 col-lg-8">
               <FilterOrder filter={filter} handleChange={handleChange} />
               <OrderList orders={filteredOrders} />
             </div>
