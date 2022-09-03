@@ -3,8 +3,8 @@ import OrderItemCompletedCard from '../OrderItem/OrderItemCompletedCard';
 
 export default function OrderCard({ order }) {
   return (
-    <div className="border my-2 rounded p-2 mx-auto" style={{ backgroundColor: '#eee', fontSize: '0.9em' }}>
-      <div className="row pt-4">
+    <div className="container border my-2 rounded p-2 mx-auto" style={{ backgroundColor: '#eee', fontSize: '0.9em' }}>
+      <div className="row pt-4 d-flex justify-content-between">
         <div className="col-sm-12 col-md-4">
           <table className="table mx-2">
             <tbody>
