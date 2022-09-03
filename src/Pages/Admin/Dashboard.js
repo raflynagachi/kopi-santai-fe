@@ -47,9 +47,10 @@ export default function Dashboard() {
 
   useEffect(() => {
     let earn = 0;
-    if (orders) {
-      for (let i = 0; i < orders.length; i += 1) {
-        earn += orders[i].totalPrice;
+    if (orders && orders.orderRes) {
+      const os = orders.orderRes;
+      for (let i = 0; i < os.length; i += 1) {
+        earn += os[i].totalPrice;
       }
       setEarnings(earn);
     }
