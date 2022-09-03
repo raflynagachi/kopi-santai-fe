@@ -1,0 +1,22 @@
+.text-logo{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    margin: auto;
+    padding: 8px;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: #737373;
+}
+
+.nav-item a:hover{
+    color: #252B42;
+}
+
+.nav-item .active{
+    text-decoration: underline;
+}
+
