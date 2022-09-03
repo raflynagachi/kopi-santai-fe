@@ -48,9 +48,8 @@ export default function MenuDetail() {
     const dataForm = e.target.elements;
 
     if (!helpers.isValidToken(token)) {
-      alert('unauthorized');
       localStorage.setItem('token', '');
-      navigate('/login');
+      navigate('/unauthorized');
     }
 
     let description = '';

@@ -21,9 +21,8 @@ export default function OrderItemCard({ showButton, orderItem }) {
 
   const deleteOrder = () => {
     if (!helpers.isValidToken(token)) {
-      alert('unauthorized');
       localStorage.setItem('token', '');
-      navigate('/login');
+      navigate('/unauthorized');
     }
 
     const url = `${API.OrderItems}/${orderItem.id}`;
@@ -52,9 +51,8 @@ export default function OrderItemCard({ showButton, orderItem }) {
     const dataForm = e.target.elements;
 
     if (!helpers.isValidToken(token)) {
-      alert('unauthorized');
       localStorage.setItem('token', '');
-      navigate('/login');
+      navigate('/unauthorized');
     }
 
     const requestBody = {

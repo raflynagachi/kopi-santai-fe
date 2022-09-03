@@ -16,6 +16,8 @@ import MenuAdmin from './Pages/Admin/MenuAdmin';
 import CouponAdmin from './Pages/Admin/CouponAdmin';
 import Promotion from './Pages/Admin/Promotion';
 import ReviewAdmin from './Pages/Admin/ReviewAdmin';
+import PageUnauthorized from './Pages/PageUnauthorized';
+import PageForbidden from './Pages/PageForbidden';
 
 function App() {
   return (
@@ -86,6 +88,14 @@ function App() {
           element={<Promotion />}
         />
       </Route>
+      <Route
+        path="/unauthorized"
+        element={<PageUnauthorized />}
+      />
+      <Route
+        path="/forbidden"
+        element={<PageForbidden />}
+      />
       <Route
         path="*"
         element={<PageNotFound />}

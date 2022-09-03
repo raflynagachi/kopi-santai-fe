@@ -33,9 +33,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!helpers.isValidToken(token)) {
-      alert('unauthorized');
       localStorage.setItem('token', '');
-      navigate('/login');
+      navigate('/unauthorized');
     }
 
     setOrders(orderRes.data.data);

@@ -15,9 +15,8 @@ export default function PromotionCreateForm({ handleSubmit }) {
 
   useEffect(() => {
     if (!helpers.isValidToken(token)) {
-      alert('unauthorized');
       localStorage.setItem('token', '');
-      navigate('/login');
+      navigate('/unauthorized');
     }
 
     const url = `${API.InternalCoupons}`;

@@ -21,9 +21,8 @@ export default function Games() {
 
   useEffect(() => {
     if (!helpers.isValidToken(token)) {
-      alert('unauthorized');
       localStorage.setItem('token', '');
-      navigate('/login');
+      navigate('/unauthorized');
     }
 
     const { id } = jwt(token).user;

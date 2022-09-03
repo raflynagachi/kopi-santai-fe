@@ -24,9 +24,8 @@ export default function Promotion() {
 
   useEffect(() => {
     if (!helpers.isValidToken(token)) {
-      alert('unauthorized');
       localStorage.setItem('token', '');
-      navigate('/login');
+      navigate('/unauthorized');
     }
 
     const url = `${API.InternalPromotions}`;
@@ -55,9 +54,8 @@ export default function Promotion() {
     const dataForm = e.target.elements;
 
     if (!helpers.isValidToken(token)) {
-      alert('unauthorized');
       localStorage.setItem('token', '');
-      navigate('/login');
+      navigate('/unauthorized');
     }
 
     let base64;

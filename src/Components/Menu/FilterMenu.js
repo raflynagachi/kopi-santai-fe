@@ -17,9 +17,8 @@ export default function FilterMenu({
 
   useEffect(() => {
     if (!helpers.isValidToken(token) && isAdmin) {
-      alert('unauthorized');
       localStorage.setItem('token', '');
-      navigate('/login');
+      navigate('/unauthorized');
     }
 
     const url = `${API.Categories}`;

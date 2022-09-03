@@ -17,8 +17,7 @@ export default function HeaderAdmin() {
   useEffect(() => {
     if (helpers.isValidToken(token)) {
       if (jwt(token).user.role !== 'ADMIN') {
-        alert('Forbidden access');
-        navigate('/');
+        navigate('/forbidden');
       }
     }
   }, [token]);

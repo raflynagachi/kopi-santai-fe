@@ -49,9 +49,8 @@ export default function MenuAdmin() {
     const dataForm = e.target.elements;
 
     if (!helpers.isValidToken(token)) {
-      alert('unauthorized');
       localStorage.setItem('token', '');
-      navigate('/login');
+      navigate('/unauthorized');
     }
 
     let base64 = dataForm.imageByte.value;

@@ -17,9 +17,8 @@ export default function Profile() {
 
   useEffect(() => {
     if (!helpers.isValidToken(token)) {
-      alert('unauthorized');
       localStorage.setItem('token', '');
-      navigate('/login');
+      navigate('/unauthorized');
     }
 
     const userJWT = jwt(token);
@@ -32,8 +31,7 @@ export default function Profile() {
         if (result.statusCode === 200) {
           setData(result.data);
         } else if (result.statusCode === 401) {
-          alert('unauthorized error');
-          navigate('/');
+          navigate('/unauthorized');
         }
       })
       .catch((err) => {

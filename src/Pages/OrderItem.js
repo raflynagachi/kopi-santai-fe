@@ -18,9 +18,8 @@ export default function OrderItem() {
 
   useEffect(() => {
     if (!helpers.isValidToken(token)) {
-      alert('unauthorized');
       localStorage.setItem('token', '');
-      navigate('/login');
+      navigate('/unauthorized');
     }
 
     const url = `${API.OrderItems}`;
@@ -57,9 +56,8 @@ export default function OrderItem() {
     const dataForm = e.target.elements;
 
     if (!helpers.isValidToken(token)) {
-      alert('unauthorized');
       localStorage.setItem('token', '');
-      navigate('/login');
+      navigate('/unauthorized');
     }
 
     const dateNow = new Date();
@@ -98,9 +96,17 @@ export default function OrderItem() {
         <Toast show={showToastSuccess} setShow={setShowToastSuccess} message="order checkout success" />
         {!loading
         && (
-          <div className="container row">
+          <div className="container row d-flex justify-content-center">
             <div className="col-sm-12 col-md-6 col-lg-4"><OrderItemList orderItems={orderItems} /></div>
-            <div className="col">{total !== 0 && <OrderCart total={total} handleSubmitOrder={handleSubmitOrder} />}</div>
+            { total !== 0
+              && (
+              <div className="col-sm-12 col-md-6 col-lg-8">
+                <OrderCart
+                  total={total}
+                  handleSubmitOrder={handleSubmitOrder}
+                />
+              </div>
+              )}
           </div>
         )}
       </div>

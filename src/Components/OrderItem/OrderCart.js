@@ -19,9 +19,8 @@ export default function OrderCart({ total, handleSubmitOrder }) {
 
   useEffect(() => {
     if (!helpers.isValidToken(token)) {
-      alert('unauthorized');
       localStorage.setItem('token', '');
-      navigate('/login');
+      navigate('/unauthorized');
     }
 
     const url = `${API.PaymentOpt}`;
@@ -66,9 +65,8 @@ export default function OrderCart({ total, handleSubmitOrder }) {
 
   const deleteOrders = () => {
     if (!helpers.isValidToken(token)) {
-      alert('unauthorized');
       localStorage.setItem('token', '');
-      navigate('/login');
+      navigate('/unauthorized');
     }
 
     const url = `${API.OrderItems}`;
