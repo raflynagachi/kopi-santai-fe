@@ -13,15 +13,15 @@ export default function ReviewForm({ menuItem, handleSubmit }) {
         <div className="form-group">
           Rating
           <div className="d-flex flex-row align-items-center form-check">
-            <input type="radio" name="rating" className="form-check-input ms-4 me-1" value={1} />
+            <input type="radio" name="rating" id="rating" className="form-check-input ms-4 me-1" value={1} />
             1
-            <input type="radio" name="rating" className="form-check-input ms-4 me-1" value={2} />
+            <input type="radio" name="rating" id="rating" className="form-check-input ms-4 me-1" value={2} />
             2
-            <input type="radio" name="rating" className="form-check-input ms-4 me-1" value={3} />
+            <input type="radio" name="rating" id="rating" className="form-check-input ms-4 me-1" value={3} />
             3
-            <input type="radio" name="rating" className="form-check-input ms-4 me-1" value={4} />
+            <input type="radio" name="rating" id="rating" className="form-check-input ms-4 me-1" value={4} />
             4
-            <input type="radio" name="rating" className="form-check-input ms-4 me-1" value={5} />
+            <input type="radio" name="rating" id="rating" className="form-check-input ms-4 me-1" value={5} />
             5
           </div>
         </div>
