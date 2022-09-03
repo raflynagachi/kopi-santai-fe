@@ -20,7 +20,7 @@ export const helpers = {
     `?category=${q.category ? q.category : ''}&sortBy=${q.sortBy ? q.sortBy : ''}&sort=${q.sort ? q.sort : ''}&search=${q.search ? q.search : ''}`
   ),
   queryParamOrderToString: (q) => (
-    `${q.date ? `?date=${q.date}` : ''}`
+    `?${q.date ? `date=${q.date}` : ''}${q.limit ? `&limit=${q.limit}` : ''}${q.page ? `&page=${q.page}` : ''}`
   ),
 };
 
