@@ -70,7 +70,7 @@ export default function Dashboard() {
             {`${format.priceFormatter(earnings)}`}
           </h5>
           <FilterAllOrder handleChangeQueryParam={handleChangeQueryParam} />
-          <OrderTable orders={orders} />
+          <OrderTable orders={orders} setQueryParam={setQueryParam} queryParam={queryParam} />
         </div>
         )
       }

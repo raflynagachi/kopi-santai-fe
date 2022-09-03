@@ -6,7 +6,7 @@ import { API, helpers } from '../../Utils/API';
 import Toast from '../Toast';
 import DeliveryForm from './DeliveryForm';
 
-export default function OrderTable({ orders }) {
+export default function OrderTable({ orders, setQueryParam, queryParam }) {
   const navigate = useNavigate();
   const [delivery, setDelivery] = useState({});
   const [showModal, setShowModal] = useState(false);
@@ -54,6 +54,24 @@ export default function OrderTable({ orders }) {
       });
   };
 
+  const pages = [];
+  for (let i = 1; i <= orders.totalPage; i += 1) {
+    pages.push(
+      <li className="page-item">
+        <button
+          type="button"
+          className="page-link"
+          onClick={() => setQueryParam({
+            ...queryParam,
+            page: i,
+          })}
+        >
+          {i}
+        </button>
+      </li>,
+    );
+  }
+
   return (
     <div className="container">
       {showModal && <Modal show={showModal} setShow={setShowModal} title="Update Delivery"><DeliveryForm delivery={delivery} handleSubmit={handleSubmitUpdateDeliveryStatus} /></Modal>}
@@ -73,11 +91,11 @@ export default function OrderTable({ orders }) {
         </thead>
 
         {
-          orders
-            ? orders.map((item, idx) => (
+          orders.orderRes
+            ? orders.orderRes.map((item, idx) => (
               <tbody>
                 <tr key={item.id}>
-                  <td>{idx + 1}</td>
+                  <td>{(orders.currentPage - 1) * orders.limit + (idx + 1)}</td>
                   <td>{item.userID}</td>
                   {
             item.couponID === 0
@@ -87,7 +105,7 @@ export default function OrderTable({ orders }) {
                   <td>{format.formatDate(item.orderedDate)}</td>
                   <td className="text-end">{`${format.priceFormatter(item.totalPrice)}`}</td>
                   <td>{item.paymentOption.name}</td>
-                  <td><button type="button" className="btn" style={{ backgroundColor: '#feffab' }} onClick={() => { updateDeliveryStatus(item.delivery); }}>{item.delivery.status}</button></td>
+                  <td><button type="button" className="btn" style={{ backgroundColor: item.delivery.status !== 'DELIVERED' ? '#feffab' : '#26f193' }} onClick={item.delivery.status !== 'DELIVERED' ? () => { updateDeliveryStatus(item.delivery); } : undefined}>{item.delivery.status}</button></td>
                 </tr>
               </tbody>
             ))
@@ -100,6 +118,13 @@ export default function OrderTable({ orders }) {
             )
         }
       </table>
+      <div className="container">
+        <nav aria-label="Page navigation">
+          <ul className="pagination">
+            {pages}
+          </ul>
+        </nav>
+      </div>
     </div>
   );
 }
