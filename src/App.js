@@ -65,7 +65,7 @@ function App() {
       </Route>
       <Route
         path="internal"
-        element={<MainLayout isAdmin />}
+        element={<MainLayout />}
       >
         <Route
           path=""

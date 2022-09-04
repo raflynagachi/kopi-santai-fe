@@ -41,16 +41,44 @@ export default function Header() {
           </button>
           <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul className="navbar-nav gap-3 p-2 align-items-end">
-              <li className="nav-item">
-                <NavLink data-testid="navlink-home" to="/">
-                  Home
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink data-testid="navlink-menu" to="menu">
-                  Menu
-                </NavLink>
-              </li>
+              { role !== 'ADMIN' && (
+                <>
+                  <li className="nav-item">
+                    <NavLink data-testid="navlink-home" to="/">
+                      Home
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink data-testid="navlink-menu" to="menu">
+                      Menu
+                    </NavLink>
+                  </li>
+                </>
+              )}
+              { role === 'ADMIN' && (
+                <>
+                  <li className="nav-item">
+                    <NavLink data-testid="navlink-home" to="/internal/">
+                      Dashboard
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink data-testid="navlink-menu" to="/internal/menu">
+                      Menu
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink data-testid="navlink-coupon" to="/internal/coupon">
+                      Coupon
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink data-testid="navlink-promotion" to="/internal/promotion">
+                      Promotion
+                    </NavLink>
+                  </li>
+                </>
+              )}
               { role === 'USER' && (
                 <>
                   <li className="nav-item">
@@ -74,7 +102,7 @@ export default function Header() {
               { token ? (
                 <>
                   <li className="nav-item">
-                    <NavLink data-testid="navlink-profile" to="profile">
+                    <NavLink data-testid="navlink-profile" to="/profile">
                       Profile
                     </NavLink>
                   </li>
