@@ -87,8 +87,8 @@ export default function FilterMenu({
             value={queryParam.sort}
             onChange={handleChangeQueryParam}
           >
-            <option value="asc">ascending</option>
             <option value="desc">descending</option>
+            <option value="asc">ascending</option>
           </select>
         </div>
         <div className="col mb-2">
