@@ -6,6 +6,7 @@ import EditFormProfile from './EditFormProfile';
 import { API, helpers } from '../../Utils/API';
 import Toast from '../Toast';
 import Modal from '../Modal';
+import userProfile from '../../Assets/userProfile.jpg';
 
 export default function UserProfile({ data }) {
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ export default function UserProfile({ data }) {
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
       <div className="row">
         <div className="col-sm-12 col-lg-4 d-flex justify-content-center">
-          <img style={{ width: '200px', height: '200px' }} className="rounded-circle p-4" src={format.displayByteImage(data.user.profilePicture)} alt="profile" />
+          <img style={{ width: '200px', height: '200px' }} className="rounded-circle p-4" src={data.user.profilePicture ? format.displayByteImage(data.user.profilePicture) : format.displayByteImage(userProfile)} alt="profile" />
         </div>
         <div className="col-sm-12 col-lg-8">
           <table className="table">
