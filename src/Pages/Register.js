@@ -46,7 +46,7 @@ export default function Register() {
       <FormWrapper title="Register">
         <form onSubmit={handleSubmitRegister}>
           <input id="fullName" className="form-control my-3" type="text" placeholder="full name" required />
-          <input id="phone" className="form-control my-3" type="tel" pattern="[+]*[0-9]{8,13}" placeholder="phone" required />
+          <input id="phone" className="form-control my-3" type="tel" pattern="\+[0-9]{8,15}" placeholder="phone" required />
           <textarea id="address" className="form-control my-3" placeholder="address" required />
           <input id="email" className="form-control my-3" type="email" placeholder="email" required />
           <input id="password" className="form-control my-3" type="password" placeholder="password" required />

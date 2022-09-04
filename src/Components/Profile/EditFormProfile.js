@@ -21,7 +21,7 @@ export default function EditFormProfile({ user, handleSubmitUserEdit }) {
         <br />
         <div className="form-group">
           Phone
-          <input defaultValue={user.phone} type="text" className="form-control" id="phone" />
+          <input defaultValue={user.phone} type="tel" className="form-control" id="phone" pattern="\+[0-9]{8,15}" />
         </div>
         <br />
         <div className="form-group">
