@@ -29,7 +29,7 @@ export default function OrderItemForm({ qty, menuItem, handleSubmit }) {
         <div className="form-group">
           Quantity
           <div className="d-flex flex-row align-items-center">
-            <input value={quantity} type="number" className="form-control d-flex me-5" id="quantity" min={1} required />
+            <input value={quantity} type="text" className="form-control d-flex me-5" id="quantity" min={1} required />
             <div className="d-flex justify-content-between">
               <button type="button" style={{ fontSize: '0.8em', backgroundColor: '#ff7878' }} className="d-flex btn me-2" onClick={() => { setQuantity(quantity - 1); }}>-</button>
               <button type="button" style={{ fontSize: '0.8em', backgroundColor: '#87f777' }} className="d-flex btn ms-2" onClick={() => { setQuantity(quantity + 1); }}>+</button>
