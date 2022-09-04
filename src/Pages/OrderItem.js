@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import jwt from 'jwt-decode';
 import { API, helpers } from '../Utils/API';
 import Loading from '../Components/Loading';
 import Toast from '../Components/Toast';
@@ -20,6 +21,10 @@ export default function OrderItem() {
     if (!helpers.isValidToken(token)) {
       localStorage.setItem('token', '');
       navigate('/unauthorized');
+    }
+
+    if (jwt(token).user.role !== 'USER') {
+      navigate('/forbidden');
     }
 
     const url = `${API.OrderItems}`;

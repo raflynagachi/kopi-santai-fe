@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import jwt from 'jwt-decode';
 import format from '../Utils/Format';
 import { API, helpers } from '../Utils/API';
 import Toast from '../Components/Toast';
@@ -50,6 +51,10 @@ export default function MenuDetail() {
     if (!helpers.isValidToken(token)) {
       localStorage.setItem('token', '');
       navigate('/unauthorized');
+    }
+
+    if (jwt(token).user.role !== 'USER') {
+      navigate('/forbidden');
     }
 
     let description = '';

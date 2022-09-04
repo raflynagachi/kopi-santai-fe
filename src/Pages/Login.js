@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import jwt from 'jwt-decode';
 import FormWrapper from '../Components/Form/FormWrapper';
 import { API, helpers } from '../Utils/API';
 import Toast from '../Components/Toast';
@@ -24,8 +25,13 @@ export default function Login() {
       .then((result) => {
         if (result.statusCode === 200) {
           localStorage.setItem('token', result.data.token);
-          navigate('/');
-          window.location.reload();
+          const { role } = jwt(result.data.token).user;
+          if (role === 'USER') {
+            navigate('/');
+          }
+          if (role === 'ADMIN') {
+            navigate('/internal');
+          }
         } else {
           setError(result);
           setShowToast(true);

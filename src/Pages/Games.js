@@ -9,7 +9,7 @@ import Gameplay from '../Components/Games/Gameplay';
 
 export default function Games() {
   const navigate = useNavigate();
-  const MaxTried = 5;
+  const MaxTried = 3;
   const [userGame, setUserGame] = useState({});
   const [tried, setTried] = useState(0);
   const [leaderboard, setLeaderboard] = useState([]);
@@ -23,6 +23,10 @@ export default function Games() {
     if (!helpers.isValidToken(token)) {
       localStorage.setItem('token', '');
       navigate('/unauthorized');
+    }
+
+    if (jwt(token).user.role !== 'USER') {
+      navigate('/forbidden');
     }
 
     const { id } = jwt(token).user;

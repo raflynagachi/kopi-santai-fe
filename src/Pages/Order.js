@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import jwt from 'jwt-decode';
 import { API, helpers } from '../Utils/API';
 import Loading from '../Components/Loading';
 import Toast from '../Components/Toast';
@@ -21,6 +22,10 @@ export default function Order() {
     if (!helpers.isValidToken(token)) {
       localStorage.setItem('token', '');
       navigate('/unauthorized');
+    }
+
+    if (jwt(token).user.role !== 'USER') {
+      navigate('/forbidden');
     }
 
     const url = `${API.Orders}`;
@@ -56,10 +61,6 @@ export default function Order() {
       setFilteredOrders(fOrders);
     }
   }, [filter, orders]);
-
-  useEffect(() => {
-
-  }, [orders, filter]);
 
   const handleChange = (event) => {
     setFilter({

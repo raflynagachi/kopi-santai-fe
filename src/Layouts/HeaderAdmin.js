@@ -23,7 +23,7 @@ export default function HeaderAdmin() {
   }, [token]);
 
   return (
-    <header>
+    <header className="sticky-top" style={{ backgroundColor: '#efefef' }}>
       <nav className="navbar navbar-expand-md navbar-light">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/internal/">
@@ -68,11 +68,6 @@ export default function HeaderAdmin() {
                   <li className="nav-item">
                     <NavLink data-testid="navlink-profile" to="/profile">
                       Profile
-                    </NavLink>
-                  </li>
-                  <li className="nav-item ">
-                    <NavLink className="btn py-0 px-2" style={{ backgroundColor: '#63ddff', color: '#333' }} data-testid="navlink-admin" to="/">
-                      User page
                     </NavLink>
                   </li>
                   <li className="nav-item m-auto">

@@ -1,19 +1,13 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './Layout.css';
-import jwt from 'jwt-decode';
 import { useEffect, useState } from 'react';
+import jwt from 'jwt-decode';
 import { helpers } from '../Utils/API';
 
 export default function Header() {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
-  const [role, setRole] = useState('USER');
-
-  useEffect(() => {
-    if (helpers.isValidToken(token)) {
-      setRole(jwt(token).user.role);
-    }
-  }, [token]);
+  const [role, setRole] = useState('');
 
   const logout = () => {
     navigate('/login');
@@ -21,8 +15,14 @@ export default function Header() {
     window.location.reload();
   };
 
+  useEffect(() => {
+    if (helpers.isValidToken(token)) {
+      setRole(jwt(token).user.role);
+    }
+  }, [token]);
+
   return (
-    <header>
+    <header className="sticky-top" style={{ backgroundColor: '#efefef' }}>
       <nav className="navbar navbar-expand-md navbar-light">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
@@ -51,7 +51,7 @@ export default function Header() {
                   Menu
                 </NavLink>
               </li>
-              { token && (
+              { role === 'USER' && (
                 <>
                   <li className="nav-item">
                     <NavLink data-testid="navlink-orderItem" to="cart">
@@ -78,17 +78,7 @@ export default function Header() {
                       Profile
                     </NavLink>
                   </li>
-                  {
-                    role === 'ADMIN'
-                    && (
-                    <li className="nav-item ">
-                      <NavLink className="btn py-0 px-2" style={{ backgroundColor: '#63ddff', color: '#333' }} data-testid="navlink-admin" to="internal/">
-                        Admin page
-                      </NavLink>
-                    </li>
-                    )
-                  }
-                  <li className="nav-item m-auto">
+                  <li className="nav-item">
                     <button type="button" onClick={logout} className="btn py-0 px-2" style={{ backgroundColor: '#ff6d6d' }}>Logout</button>
                   </li>
                 </>
