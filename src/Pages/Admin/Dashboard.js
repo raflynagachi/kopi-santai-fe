@@ -11,7 +11,6 @@ import format from '../../Utils/Format';
 export default function Dashboard() {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
-  const [earnings, setEarnings] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showToast, setShowToast] = useState(false);
@@ -45,17 +44,6 @@ export default function Dashboard() {
     }
   }, [error, orderRes]);
 
-  useEffect(() => {
-    let earn = 0;
-    if (orders && orders.orderRes) {
-      const os = orders.orderRes;
-      for (let i = 0; i < os.length; i += 1) {
-        earn += os[i].totalPrice;
-      }
-      setEarnings(earn);
-    }
-  }, [orders]);
-
   return (
     <div className="container">
       {error && <Toast show={showToast} setShow={setShowToast} message={error.message} />}
@@ -67,7 +55,7 @@ export default function Dashboard() {
           <h4 className="text-center my-2">Orders Management</h4>
           <h5 className="text-end">
             <span style={{ fontSize: '0.9rem', fontWeight: 'normal' }}>Total earnings: </span>
-            {`${format.priceFormatter(earnings)}`}
+            {`${format.priceFormatter(orders.sumOfTotalPrice)}`}
           </h5>
           <FilterAllOrder handleChangeQueryParam={handleChangeQueryParam} />
           <OrderTable orders={orders} setQueryParam={setQueryParam} queryParam={queryParam} />
