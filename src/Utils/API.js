@@ -1,6 +1,6 @@
 import jwt from 'jwt-decode';
 
-const baseUrl = 'https://kopi-santai.herokuapp.com';
+const baseUrl = 'http://localhost:8080';
 
 export const helpers = {
   requestOptions: (dataObj, method, token) => ({
@@ -23,7 +23,7 @@ export const helpers = {
   ),
 };
 
-export function API() {}
+export function API() { }
 
 API.Login = `${baseUrl}/login`;
 API.Register = `${baseUrl}/register`;
